@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Log in (v2)</title>
+  <title>DisPort | Register</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -49,6 +49,20 @@
                 <div class="input-group-text">
                     <span class="fas fa-envelope"></span>
                     @error('email')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror                    
+                </div>
+            </div>
+        </div>
+
+        <div class="input-group mb-3">
+            <input type="date" name="tgl_lahir" class="form-control" placeholder="Tanggal Lahir">
+            <div class="input-group-append">
+                <div class="input-group-text">
+                    <span class="fas fa-calendar"></span>
+                    @error('tgl_lahir')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>

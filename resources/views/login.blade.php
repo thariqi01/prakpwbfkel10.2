@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Log in (v2)</title>
+  <title>DisPort | Log in</title>
 
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -22,57 +22,57 @@
 
 <body class="hold-transition login-page">
 <div class="login-box">
-  <!-- /.login-logo -->
-  <div class="card card-outline card-primary">
-    <div class="card-header text-center">
-        <a href="/login" class="h1"><b>Login </b>User</a>
-    </div>
+    <!-- /.login-logo -->
+    <div class="card card-outline card-primary">
+        <div class="card-header text-center">
+            <a href="/login" class="h1"><b>Login </b>User</a>
+        </div>
 
-    <div class="card-body">
-        <form method="POST" action="{{ route('login') }}">
-          @csrf
+        <div class="card-body">
+            <form method="POST" action="{{ route('login') }}">
+            @csrf
 
-          <div class="row mb-3">
-              <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail') }}</label>
-              <div class="col-md-6">
-                  <input id="email" type="email" name="email" class="form-control @error('email') is-invalid @enderror"  value="{{ old('email') }}" required autocomplete="email" autofocus>
-                  @error('email')
-                      <span class="invalid-feedback" role="alert">
-                          <strong>{{ $message }}</strong>
-                      </span>
-                  @enderror
-              </div>
-          </div>
+            <div class="row mb-3">
+                <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail') }}</label>
+                <div class="col-md-6">
+                    <input id="email" type="email" name="email" class="form-control @error('email') is-invalid @enderror"  value="{{ old('email') }}" required autocomplete="email" autofocus>
+                    @error('email')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+            </div>
 
-          <div class="row mb-3">
-              <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-              <div class="col-md-6">
-                  <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-                  @error('password')
-                      <span class="invalid-feedback" role="alert">
-                          <strong>{{ $message }}</strong>
-                      </span>
-                  @enderror
-              </div>
-          </div>     
+            <div class="row mb-3">
+                <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                <div class="col-md-6">
+                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                    @error('password')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+            </div>     
 
-          <div class="row mb-0">
-              <div class="col-md-8 offset-md-4">
-                  <button type="submit" class="btn btn-primary">
-                      {{ __('Login') }}
-                  </button>                  
-              </div>
-          </div>
+            <div class="row mb-3">
+                <div class="col-md-8 offset-md-4">
+                    <button type="submit" class="btn btn-primary">
+                        {{ __('Login') }}
+                    </button>                  
+                </div>
+            </div>
 
-      </form>     
+            </form>     
       
-      <p class="mb-0">
-        <a href="{{ route('register') }}" class="text-center">Register Now!</a>
-      </p>
+            <p class="mt-4 mb-0">
+                <p class="text-center"> Belum memiliki akun?<a href="{{ route('register') }}"> Buat akun!</a></p>                
+            </p>
+        </div>
+        <!-- /.card-body -->
     </div>
-    <!-- /.card-body -->
-  </div>
-  <!-- /.card -->
+    <!-- /.card -->
 </div>
 <!-- /.login-box -->
 
