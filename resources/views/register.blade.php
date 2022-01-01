@@ -21,7 +21,7 @@
   <!-- /.login-logo -->
   <div class="card card-outline card-primary">
     <div class="card-header text-center">
-        <a href="/register" class="h1"><b>Register </b>User</a>
+        <a href="/register" class="h1"><b>Register </b></a>
     </div>
     <div class="card-body">
         <p class="login-box-msg">Register to start your session</p>
