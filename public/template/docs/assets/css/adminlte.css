@@ -2522,7 +2522,6 @@ textarea.form-control {
 }
 
 .invalid-feedback {
-  display: none;
   width: 100%;
   margin-top: 0.25rem;
   font-size: 80%;
@@ -35426,7 +35425,7 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
 
 .login-box,
 .register-box {
-  width: 360px;
+  width: 450px;
 }
 
 @media (max-width: 576px) {

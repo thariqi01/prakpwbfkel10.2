@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -30,7 +31,9 @@ class UserController extends Controller
             'password' => $request->password                     
         ]);
 
-        return redirect('user')->with('tambah','Data berhasil ditambah!');
+        Toastr::success('Data user berhasil ditambah','Tambah');
+        return redirect()->back();
+
     }
 
     public function edit(Request $request, $id)
@@ -51,41 +54,19 @@ class UserController extends Controller
                 'tgl_lahir'=>$p['tgl_lahir'], 
             ]);
 
-            return redirect()->back()->with('edit','Data behasil diubah!');
+            Toastr::warning('Data user berhasil diubah','Edit');
+            return redirect()->back();
 
         }
-        // // mengambil data user berdasarkan id yang dipilih
-        // $users = DB::table('users')->where('id',$id)->get(); 
-          
-        // // passing data user yang didapat ke view edit.blade.php 
-        // return view('edit.useredit',['users' => $users]);
     }   
-
-    // public function update(Request $request)
-    // {
-    //     $request ->validate([
-    //         'name' => 'required|string|max:255|min:6|regex:/^[A-Za-z]+$/',
-    //         'email' => 'required|string|max:255|min:12|email',
-    //         'tgl_lahir' => 'required|date',
-    //         'password' => 'required|string|min:8',
-    //     ]);
-
-    //     DB::table('users')->where('id',$request->id)->update([
-    //         'name' => $request->name,
-    //         'email' => $request->email,
-    //         'tgl_lahir' => $request->tgl_lahir,
-    //         'password' => $request->password
-    //     ]);        
-
-    //     return redirect('user')->with('edit','Data berhasil diubah!');
-    // }
 
     public function delete($id)
     {
         date_default_timezone_set('Asia/Jakarta');
         DB::table('users')->where('id',$id)->update(['DELETED_AT' => date('Y-m-d H:i:s')]);
 
-        return redirect('user')->with('hapus','Data berhasil dihapus!');
+        Toastr::error('Data user berhasil dihapus','Hapus');
+        return redirect()->back();
     }
 
     public function bin()
@@ -102,7 +83,8 @@ class UserController extends Controller
             $users = User::onlyTrashed()->restore();
         }
 
-        return redirect('user/bin')->with('status','Data berhasil di-restore!'); 
+        Toastr::info('Data user berhasil direstore','Restore');
+        return redirect()->back(); 
 
     }
 
@@ -114,7 +96,9 @@ class UserController extends Controller
             $users = User::onlyTrashed()->forceDelete();
         }
 
-        return redirect('user/bin')->with('status','Data berhasil dihapus permanen!');
+        Toastr::error('Data user berhasil dihapus secara permanen','Hapus Permanen');      
+        return redirect()->back();
+
     }
 
 }

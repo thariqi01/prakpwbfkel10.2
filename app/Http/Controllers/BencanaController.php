@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Bencana;
@@ -30,7 +31,9 @@ class BencanaController extends Controller
             'nama_bencana' => $request->nama_bencana,
         ]);
 
-        return redirect('bencana')->with('tambah','Data berhasil ditambah!');    
+        Toastr::success('Data user berhasil ditambah','Success');
+        return redirect()->back();
+
     }
 
     public function edit(Request $request, $id_bencana)
@@ -49,17 +52,18 @@ class BencanaController extends Controller
                 'nama_bencana'=>$p['nama_bencana'],
             ]);
 
-            return redirect()->back()->with('edit','Data behasil diubah!');
+            Toastr::success('Data user berhasil diubah','Warning');
+            return redirect()->back();
 
         }
     }
 
     public function delete($id_bencana){
         date_default_timezone_set('Asia/Jakarta');
-        DB::table('bencana')->where('id_bencana',$id_bencana)->update([
-            'DELETED_AT' => date('Y-m-d H:i:s')
-        ]);
+        DB::table('bencana')->where('id_bencana',$id_bencana)->update(['DELETED_AT' => date('Y-m-d H:i:s')]);
         
-        return redirect('bencana')->with('hapus','Data berhasil dihapus!');
+        Toastr::success('Data user berhasil dihapus','Success');
+        return redirect()->back();
+
     }
 }

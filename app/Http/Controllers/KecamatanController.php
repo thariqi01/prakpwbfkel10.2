@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Kecamatan;
@@ -30,7 +31,9 @@ class KecamatanController extends Controller
             'nama_kecamatan' => $request->nama_kecamatan,
         ]);
 
-        return redirect('kecamatan')->with('tambah','Data berhasil ditambah!');    
+        Toastr::success('Data user berhasil ditambah','Success');
+        return redirect()->back();
+
     }
 
     public function edit(Request $request, $id_kecamatan)
@@ -49,7 +52,8 @@ class KecamatanController extends Controller
                 'nama_kecamatan'=>$p['nama_kecamatan'],
             ]);
 
-            return redirect()->back()->with('edit','Data behasil diubah!');
+            Toastr::success('Data user berhasil diubah','Warning');
+            return redirect()->back();
 
         }
     }
@@ -60,6 +64,8 @@ class KecamatanController extends Controller
             'DELETED_AT' => date('Y-m-d H:i:s')
         ]);
         
-        return redirect('kecamatan')->with('hapus','Data berhasil dihapus!');
+        Toastr::success('Data user berhasil dihapus','Success');
+        return redirect()->back();
+
     }
 }

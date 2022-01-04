@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Brian2694\Toastr\Facades\Toastr;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
@@ -50,13 +51,24 @@ class RegisterController extends Controller
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
-    {        
+    {                
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
+            'name' => [ 'required', 'string', 'min:5', 'max:255', 'regex:/^[a-zA-Z\s\.]*$/'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'tgl_lahir'=>['required', 'date'],
             'password' => ['required', 'string', 'min:8', 'confirmed']            
+        ],[
+            'name.required' => 'Masukkan nama anda.',
+            'name.min' => 'Nama tidak boleh kurang dari 5 karakter.',
+            'name.max' => 'Nama tidak boleh lebih dari 255 karakter.',
+            'name.regex' => 'Format nama anda salah.',
+            'email.required' => 'Masukkan email anda.',
+            'email.unique' => 'Email sudah digunakan.',
+            'tgl_lahir.required' => 'Masukkan tanggal lahir anda.',                    
+            'password.required' => 'Masukkan password anda.',    
+            'password.min' => 'Password tidak boleh kurang dari 5 karakter',
         ]);
+        
     }
 
     /**
@@ -76,11 +88,11 @@ class RegisterController extends Controller
     }
 
     public function register(Request $request)
-    {
+    {        
         $this->validator($request->all())->validate();
 
         event(new Registered($user = $this->create($request->all())));
-
-        return redirect($this->redirectPath())->with('message', 'Selamat! anda berhasil membuat akun!');
+        
+        return redirect()->route('login');
     }
 }

@@ -47,7 +47,7 @@
                     <div class="card-header">
                       <h5 class="card-title">Role</h5>
                       <div class="float-sm-right"> 
-                        <a href="{{ url('role/bin') }}"  class="btn btn-danger btn-sm">
+                        <a href="{{ url('dashboard/role/bin') }}"  class="btn btn-danger btn-sm">
                           <i class="fa fa-trash fa-fw "></i>Bin
                         </a>                                           
                         <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#tambah-role">
@@ -133,7 +133,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="{{ url('role/edit/'.$p->id_role) }}" method="post">
+        <form action="{{ url('dashboard/role/edit/'.$p->id_role) }}" method="post">
           @csrf                  
 
           <div class="form-group">
@@ -173,7 +173,7 @@
       </div>
       <div class="modal-footer justify-content-between">
         <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-        <a href="{{ url('role/delete/'.$p->id_role) }}" class="btn btn-primary">Yes</a>
+        <a href="{{ url('dashboard/role/delete/'.$p->id_role) }}" class="btn btn-primary">Yes</a>
       </div>
     </div>
     <!-- /.modal-content -->

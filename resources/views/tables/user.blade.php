@@ -48,7 +48,7 @@
                     <div class="card-header">
                       <h5 class="card-title">Data User</h5>
                       <div class="float-sm-right"> 
-                        <a href="{{ url('user/bin') }}"  class="btn btn-danger btn-sm">
+                        <a href="{{ url('dashboard/user/bin') }}"  class="btn btn-danger btn-sm">
                           <i class="fa fa-trash fa-fw "></i>Bin
                         </a>                                           
                         <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#tambah-user">
@@ -64,6 +64,7 @@
                         <th> Nama </th>
                         <th> Email </th>
                         <th> Tanggal Lahir </th>
+                        <th> Role </th>
                         <th> Opsi </th>
                         </thead>
                         <tbody>                          
@@ -73,6 +74,7 @@
                               <td>{{ $p->name }}</td>
                               <td>{{ $p->email }}</td>
                               <td>{{ $p->tgl_lahir }}</td>
+                              <td>{{ $p->role }}</td>
                               <td class="text-center">                                      
                                 <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#edit{{ $p->id }}">
                                   Edit
@@ -159,7 +161,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="{{ url('user/edit/'.$p->id) }}" method="post">
+        <form action="{{ url('dashboard/user/edit/'.$p->id) }}" method="post">
           @csrf                  
 
           <div class="form-group">
@@ -215,7 +217,7 @@
       </div>
       <div class="modal-footer justify-content-between">
         <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-        <a href="{{ url('user/delete/'.$p->id) }}" class="btn btn-primary">Yes</a>
+        <a href="{{ url('dashboard/user/delete/'.$p->id) }}" class="btn btn-primary">Yes</a>
       </div>
     </div>
     <!-- /.modal-content -->

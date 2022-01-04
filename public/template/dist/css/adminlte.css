@@ -2522,7 +2522,6 @@ textarea.form-control {
 }
 
 .invalid-feedback {
-  display: none;
   width: 100%;
   margin-top: 0.25rem;
   font-size: 80%;
@@ -5725,7 +5724,6 @@ a.badge-dark:focus, a.badge-dark.focus {
 
 .alert-danger {
   color: #721c24;
-  background-color: #f8d7da;
   border-color: #f5c6cb;
 }
 
@@ -8590,6 +8588,10 @@ button.bg-dark:focus {
 .position-sticky {
   position: -webkit-sticky !important;
   position: sticky !important;
+}
+
+.check {
+font-size: 12px;
 }
 
 .fixed-top {
@@ -33304,7 +33306,7 @@ html.maximized-card {
 }
 
 .alert-danger {
-  color: #fff;
+  color: #dc3545;
   background-color: #dc3545;
   border-color: #d32535;
 }
@@ -35426,14 +35428,35 @@ a.close.disabled, a.disabled.mailbox-attachment-close {
 
 .login-box,
 .register-box {
-  width: 360px;
+  width: 450px;
+}
+
+.bg-img {
+  background: #5533ff;
+  background: linear-gradient(95deg, #5533ff 40%, #25ddf5 100%);
+  min-height: 380px;
+  background-size: cover;
+}
+
+@media (max-width: 768px) {
+  .login-box,
+  .register-box {
+    margin-top: .5rem;
+    width: 70%;
+  }
+  .login {
+    text-align: center;
+  }
 }
 
 @media (max-width: 576px) {
   .login-box,
   .register-box {
     margin-top: .5rem;
-    width: 90%;
+    width: 70%;
+  }
+  .login {
+    text-align: center;
   }
 }
 

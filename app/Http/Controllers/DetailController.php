@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Pelaporan;
@@ -39,7 +40,8 @@ class DetailController extends Controller
             'kondisi' => $request->kondisi,
         ]);
 
-        return redirect()->back()->with('tambah','Data berhasil ditambah!'); 
+        Toastr::success('Data user berhasil ditambah','Success');
+        return redirect()->back(); 
     }
 
     public function edit(Request $request, $id_detailkorban)
@@ -56,16 +58,28 @@ class DetailController extends Controller
 
             $p = $request->all();
 
-            Pelaporan::where(['id_detailkorban'=>$id_detailkorban])->update([
+            Detail::where(['id_detailkorban'=>$id_detailkorban])->update([
                 'id_pelaporan' => $p['id_pelaporan'],
                 'nik' => $p['nik'],
                 'nama' => $p['nama'],
-                'umur'=>$p['umur'],
-                'kondisi'=>$p['kondisi'],
+                'umur'=> $p['umur'],
+                'kondisi'=> $p['kondisi'],
             ]);
 
-            return redirect()->back()->with('edit','Data behasil diubah!');
+            Toastr::success('Data user berhasil diubah','Warning');
+            return redirect()->back();
 
         }
+    }
+
+    public function delete($id_detailkorban){
+        date_default_timezone_set('Asia/Jakarta');
+        DB::table('detailkorban')->where('id_detailkorban',$id_detailkorban)->update([
+            'DELETED_AT' => date('Y-m-d H:i:s')
+        ]);
+        
+        Toastr::success('Data user berhasil dihapus','Success');
+        return redirect()->back();
+        
     }
 }

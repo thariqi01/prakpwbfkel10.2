@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Role;
@@ -24,7 +25,9 @@ class RoleController extends Controller
             'role' => $request->role,
         ]);
 
-        return redirect('role')->with('tambah','Data berhasil ditambah!');    
+        Toastr::success('Data user berhasil ditambah','Tambah');
+        return redirect()->back();
+
     }
     
     public function edit(Request $request, $id_role)
@@ -41,30 +44,19 @@ class RoleController extends Controller
                 'role'=>$p['role'],
             ]);
 
-            return redirect()->back()->with('edit','Data behasil diubah!');
+            Toastr::warning('Data user berhasil diubah','Edit');
+            return redirect()->back();
 
         }
     }
-
-    // public function edit($id)
-    // {     
-    //     $role= DB::table('role')->where('id_role',$id)->get();          
-    //     return view('form edit.roleedit',['role' => $role]);
-    // }   
-
-    // public function update(Request $request){
-    //     DB::table('role')->where('id_role',$request->id)->update([
-    //         'role' => $request->role
-    //     ]);
-    //     return redirect('/role');
-    // }
 
     public function delete($id_role)
     {
         date_default_timezone_set('Asia/Jakarta');
         DB::table('role')->where('id_role',$id_role)->update(['DELETED_AT' => date('Y-m-d H:i:s')]);
 
-        return redirect('role')->with('hapus','Data berhasil dihapus!');
+        Toastr::error('Data user berhasil dihapus','Hapus');
+        return redirect()->back();
     }
     
     public function bin()
@@ -80,8 +72,9 @@ class RoleController extends Controller
         }else {
             $role = Role::onlyTrashed()->restore();
         }
-
-        return redirect('role/bin')->with('status','Data berhasil di-restore!'); 
+        
+        Toastr::info('Data user berhasil direstore','Restore');
+        return redirect()->back(); 
 
     }
 
@@ -93,6 +86,7 @@ class RoleController extends Controller
             $role = Role::onlyTrashed()->forceDelete();
         }
 
-        return redirect('role/bin')->with('status','Data berhasil dihapus permanen!');
+        Toastr::error('Data user berhasil dihapus secara permanen','Hapus Permanen');      
+        return redirect()->back();
     }
 }

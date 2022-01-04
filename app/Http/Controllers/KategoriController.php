@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Kategori;
@@ -24,7 +25,9 @@ class KategoriController extends Controller
             'kategori_bencana' => $request->kategori_bencana,
         ]);
 
-        return redirect('kategori')->with('tambah','Data berhasil ditambah!');    
+        Toastr::success('Data user berhasil ditambah','Success');
+        return redirect()->back();
+   
     }
 
     public function edit(Request $request, $id_kategoribencana)
@@ -41,33 +44,18 @@ class KategoriController extends Controller
                 'kategori_bencana'=>$p['kategori_bencana'],
             ]);
 
-            return redirect()->back()->with('edit','Data behasil diubah!');
+            Toastr::success('Data user berhasil diubah','Warning');
+            return redirect()->back();
 
         }
     }
-    // public function edit($id)
-    // {
-    //     // mengambil data siswa berdasarkan id yang dipilih
-    //     $kategori = DB::table('kategori')->where('id_kategoribencana',$id)->get(); 
-        
-    //     // passing data siswa yang didapat ke view edit.blade.php 
-    //     return view('form edit.kategoriedit',['kategori' => $kategori]);
-    // }   
-
-    // public function update(Request $request)
-    // {
-    //     DB::table('kategori')->where('id_kategoribencana',$request->id)->update(['kategori_bencana' => $request->kategori_bencana]);
-
-    //     return redirect('/kategori');
-    // }
     
     public function delete($id_kategoribencana){
         date_default_timezone_set('Asia/Jakarta');
-        DB::table('kategori')->where('id_kategoribencana',$id_kategoribencana)->update([
-            'DELETED_AT' => date('Y-m-d H:i:s')
-        ]);
+        DB::table('kategori')->where('id_kategoribencana',$id_kategoribencana)->update(['DELETED_AT' => date('Y-m-d H:i:s')]);
         
-        return redirect('/kategori');
+        Toastr::success('Data user berhasil dihapus','Success');
+        return redirect()->back();
     }
 
     public function bin()
@@ -84,7 +72,8 @@ class KategoriController extends Controller
             $kategori_bencana = Kategori::onlyTrashed()->restore();
         }
 
-        return redirect('kategori/bin')->with('status','Data berhasil di-restore!'); 
+        Toastr::success('Data user berhasil dihapus','Info');
+        return redirect()->back();  
 
     }
 
@@ -96,7 +85,9 @@ class KategoriController extends Controller
             $kategori_bencana = Kategori::onlyTrashed()->forceDelete();
         }
 
-        return redirect('kategori/bin')->with('status','Data berhasil dihapus permanen!');
+        Toastr::success('Data user berhasil dihapus permanen','Error');      
+        return redirect()->back();
+        
     }
 
 

@@ -26,71 +26,50 @@
 <section class="content">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-12">
-              <!-- MESSAGE CENTER -->
-                @if (session('tambah'))
-                <div class="alert alert-success">
-                    {{ session('tambah') }}
+          <div class="col-12">                   
+            <div class="card">
+              <div class="card-header">
+                <h5 class="card-title">Data Kecamatan</h5>
+                <div class="float-sm-right"> 
+                  <a href="{{ url('dashboard/kecamatan/bin') }}"  class="btn btn-danger btn-sm">
+                    <i class="fa fa-trash fa-fw "></i>Bin
+                  </a>                                           
+                  <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#tambah-kec">
+                    <i class="fa fa-plus fa-fw"></i>Tambah Kecamatan
+                  </button>                          
                 </div>
-                @endif
-                @if (session('edit'))
-                <div class="alert alert-success">
-                    {{ session('edit') }}
-                </div>
-                @endif                 
-                @if (session('hapus'))
-                <div class="alert alert-success">
-                    {{ session('hapus') }}
-                </div>
-                @endif        
-                <!-- /.MESSAGE CENTER -->
-                <div class="card">
-                    <div class="card-header">
-                      <h5 class="card-title">Data Kecamatan</h5>
-                      <div class="float-sm-right"> 
-                        <a href="{{ url('kecamatan/bin') }}"  class="btn btn-danger btn-sm">
-                          <i class="fa fa-trash fa-fw "></i>Bin
-                        </a>                                           
-                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#tambah-kec">
-                          <i class="fa fa-plus fa-fw"></i>Tambah Kecamatan
-                        </button>                          
-                      </div>
-                    </div>                
-                    <!-- /.card-header -->
-                    <div class="card-body">
-                        <table id="example1" class="table table-bordered table-striped">
-                            <thead>
-                            <th> ID Kecamatan </th>
-                            <th> ID Kota </th>
-                            <th> Nama Kecamatan </th>                 
-                            <th> Opsi </th>
-                            </thead>
-                            <tbody>                          
-                            @foreach($kecamatan as $p)
-                                <tr>                            
-                                <td>{{ $p->id_kecamatan }}</td>
-                                <td>{{ $p->id_kota }}</td>
-                                <td>{{ $p->nama_kecamatan }}</td>                           
-                                <td class="text-center">                                      
-                                    <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#edit{{ $p->id_kecamatan }}">
-                                    Edit
-                                    </button>                                                                                        
-                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete{{ $p->id_kecamatan }}">
-                                    Delete
-                                    </button>
-                                </td>
-                                </tr>
-                            @endforeach            
-                            </tbody>                      
-                        </table>
-                    </div>
-                    <!-- /.card-body -->
-                </div>
-                <!-- /.card -->          
+              </div>                
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped">
+                  <thead>
+                  <th> ID Kecamatan </th>
+                  <th> ID Kota </th>
+                  <th> Nama Kecamatan </th>                 
+                  <th> Opsi </th>
+                  </thead>
+                  <tbody>                          
+                  @foreach($kecamatan as $p)
+                    <tr>                            
+                    <td>{{ $p->id_kecamatan }}</td>
+                    <td>{{ $p->id_kota }}</td>
+                    <td>{{ $p->nama_kecamatan }}</td>                           
+                    <td class="text-center">                                      
+                        <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#edit{{ $p->id_kecamatan }}">
+                        Edit
+                        </button>                                                                                        
+                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete{{ $p->id_kecamatan }}">
+                        Delete
+                        </button>
+                    </td>
+                    </tr>
+                  @endforeach            
+                  </tbody>                      
+                </table>
+              </div>
             </div>
-            <!-- /.col -->
+          </div>
         </div>
-      <!-- /.row -->
     </div>
 </section>
 
@@ -148,7 +127,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="{{ url('kecamatan/edit/'.$p->id_kecamatan) }}" method="post">
+        <form action="{{ url('dashboard/kecamatan/edit/'.$p->id_kecamatan) }}" method="post">
           @csrf                  
 
           <div class="form-group">
@@ -201,7 +180,7 @@
       </div>
       <div class="modal-footer justify-content-between">
         <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-        <a href="{{ url('kecamatan/delete/'.$p->id_kecamatan) }}" class="btn btn-primary">Yes</a>
+        <a href="{{ url('dashboard/kecamatan/delete/'.$p->id_kecamatan) }}" class="btn btn-primary">Yes</a>
       </div>
     </div>
     <!-- /.modal-content -->

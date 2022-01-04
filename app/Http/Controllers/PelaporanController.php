@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Pelaporan;
@@ -42,7 +43,9 @@ class PelaporanController extends Controller
             'status' => $request->status,
         ]);
 
-        return redirect('pelaporan')->with('tambah','Data berhasil ditambah!');    
+        Toastr::success('Data user berhasil ditambah','Success');
+        return redirect()->back();
+
     }
 
     public function edit(Request $request, $id_pelaporan)
@@ -67,7 +70,8 @@ class PelaporanController extends Controller
                 'status'=>$p['status'],
             ]);
 
-            return redirect()->back()->with('edit','Data behasil diubah!');
+            Toastr::success('Data user berhasil diubah','Warning');
+            return redirect()->back();
 
         }
     }
@@ -78,6 +82,8 @@ class PelaporanController extends Controller
             'DELETED_AT' => date('Y-m-d H:i:s')
         ]);
         
-        return redirect('pelaporan')->with('hapus','Data berhasil dihapus!');
+        Toastr::success('Data user berhasil dihapus','Success');
+        return redirect()->back();
+    
     }
 }

@@ -36,13 +36,13 @@
                     <div class="card-header">
                         <h3 class="card-title">Data Kategori Terhapus</h3>
                         <div class="float-sm-right"> 
-                          <a href="{{ url('kategori/restore') }}"  class="btn btn-info btn-sm">
+                          <a href="{{ url('dashboard/kategori/restore') }}"  class="btn btn-info btn-sm">
                             <i class="fa fa-plus fa-fw"></i>Restore All
                           </a>
-                          <a href="{{ url('kategori/delete') }}"  class="btn btn-danger btn-sm">
+                          <a href="{{ url('dashboard/kategori/delete') }}"  class="btn btn-danger btn-sm">
                             <i class="fa fa-trash fa-fw"></i>Delete All
                           </a>                                                                  
-                          <a href="{{ url('kategori') }}"  class="btn btn-secondary btn-sm">
+                          <a href="{{ url('dashboard/kategori') }}"  class="btn btn-secondary btn-sm">
                             <i class="fa fa-chevron-left fa-fw"></i>Back
                           </a>                          
                         </div>
@@ -64,7 +64,7 @@
                               <td>{{ $p->kategori_bencana }}</td>                      
                               <td>{{ $p->deleted_at }}</td>
                               <td class="text-center">                                      
-                                <a href="{{ url('provinsi/restore/'.$p->id_kategoribencana) }}" class="btn btn-info btn-sm" title="Edit Data">                                      
+                                <a href="{{ url('dashboard/provinsi/restore/'.$p->id_kategoribencana) }}" class="btn btn-info btn-sm" title="Edit Data">                                      
                                   Restore
                                 </a>                                                                                          
                                 <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteperm{{ $p->id_kategoribencana }} ">
@@ -109,7 +109,7 @@
       </div>
       <div class="modal-footer justify-content-between">
         <button type="button" class="btn btn-outline-light" data-dismiss="modal">No</button>
-        <a href="{{ url('kategori/deleteperm/'.$p->id_kategoribencana) }}" class="btn btn-outline-light">Yes</a>
+        <a href="{{ url('dashboard/kategori/deleteperm/'.$p->id_kategoribencana) }}" class="btn btn-outline-light">Yes</a>
       </div>
     </div>
     <!-- /.modal-content -->

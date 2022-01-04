@@ -24,80 +24,63 @@
 @section('content')
 <!-- TABEL KOTA -->
 <section class="content">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-12">
-              <!-- MESSAGE CENTER -->
-                @if (session('tambah'))
-                <div class="alert alert-success">
-                    {{ session('tambah') }}
-                </div>
-                @endif
-                @if (session('edit'))
-                <div class="alert alert-success">
-                    {{ session('edit') }}
-                </div>
-                @endif                 
-                @if (session('hapus'))
-                <div class="alert alert-success">
-                    {{ session('hapus') }}
-                </div>
-                @endif        
-                <!-- /.MESSAGE CENTER -->
-                <div class="card">
-                    <div class="card-header">
-                      <h5 class="card-title">Data Pelaporan</h5>
-                      <div class="float-sm-right"> 
-                        <a href="{{ url('pelaporan/bin') }}"  class="btn btn-danger btn-sm">
-                          <i class="fa fa-trash fa-fw "></i>Bin
-                        </a>                                           
-                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#tambah-pelaporan">
-                          <i class="fa fa-plus fa-fw"></i>Tambah Pelaporan
-                        </button>                          
-                      </div>
-                    </div>                
-                    <!-- /.card-header -->
-                    <div class="card-body">
-                        <table id="example1" class="table table-bordered table-striped">
-                            <thead>
-                            <th> ID Pelaporan </th>
-                            <th> ID Pelapor </th>
-                            <th> ID Bencana </th>
-                            <th> ID Kecamatan </th>
-                            <th> Waktu Bencana </th>
-                            <th> Status </th>                 
-                            <th> Opsi </th>
-                            </thead>
-                            <tbody>                          
-                            @foreach($pelaporan as $p)
-                                <tr>                            
-                                <td>{{ $p->id_pelaporan }}</td>
-                                <td>{{ $p->id }}</td>
-                                <td>{{ $p->id_bencana }}</td> 
-                                <td>{{ $p->id_kecamatan }}</td>                          
-                                <td>{{ $p->waktu_bencana }}</td>
-                                <td>{{ $p->status }}</td>
-                                <td class="text-center">                                      
-                                    <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#edit{{ $p->id_pelaporan }}">
-                                    Edit
-                                    </button>                                                                                        
-                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete{{ $p->id_pelaporan }}">
-                                    Delete
-                                    </button>
-                                </td>
-                                </tr>
-                            @endforeach            
-                            </tbody>                      
-                        </table>
-                    </div>
-                    <!-- /.card-body -->
-                </div>
-                <!-- /.card -->          
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">              
+        <div class="card">
+            <div class="card-header">
+              <h5 class="card-title">Data Pelaporan</h5>
+              <div class="float-sm-right"> 
+                <a href="{{ url('dashboard/pelaporan/bin') }}"  class="btn btn-danger btn-sm">
+                  <i class="fa fa-trash fa-fw "></i>Bin
+                </a>                                           
+                <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#tambah-pelaporan">
+                  <i class="fa fa-plus fa-fw"></i>Tambah Pelaporan
+                </button>                          
+              </div>
+            </div>                
+            <!-- /.card-header -->
+            <div class="card-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <th> ID Pelaporan </th>
+                <th> ID Pelapor </th>
+                <th> ID Bencana </th>
+                <th> ID Kecamatan </th>
+                <th> Waktu Bencana </th>
+                <th> Status </th>                 
+                <th> Opsi </th>
+                </thead>
+                <tbody>                          
+                @foreach($pelaporan as $p)
+                  <tr>                            
+                  <td>{{ $p->id_pelaporan }}</td>
+                  <td>{{ $p->id }}</td>
+                  <td>{{ $p->id_bencana }}</td> 
+                  <td>{{ $p->id_kecamatan }}</td>                          
+                  <td>{{ $p->waktu_bencana }}</td>
+                  <td>{{ $p->status }}</td>
+                  <td class="text-center">                                      
+                      <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#edit{{ $p->id_pelaporan }}">
+                      Edit
+                      </button>                                                                                        
+                      <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete{{ $p->id_pelaporan }}">
+                      Delete
+                      </button>
+                  </td>
+                  </tr>
+                @endforeach            
+                </tbody>                      
+              </table>
             </div>
-            <!-- /.col -->
+            <!-- /.card-body -->
         </div>
-      <!-- /.row -->
+        <!-- /.card -->          
+      </div>
+      <!-- /.col -->
     </div>
+  <!-- /.row -->
+  </div>
 </section>
 
 <!-- MODAL TAMBAH PELAPORAN -->
@@ -191,7 +174,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="{{ url('pelaporan/edit/'.$p->id_pelaporan) }}" method="post">
+        <form action="{{ url('dashboard/pelaporan/edit/'.$p->id_pelaporan) }}" method="post">
           @csrf                    
 
           <div class="form-group">
@@ -278,7 +261,7 @@
       </div>
       <div class="modal-footer justify-content-between">
         <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-        <a href="{{ url('pelaporan/delete/'.$p->id_pelaporan) }}" class="btn btn-primary">Yes</a>
+        <a href="{{ url('dashboard/pelaporan/delete/'.$p->id_pelaporan) }}" class="btn btn-primary">Yes</a>
       </div>
     </div>
     <!-- /.modal-content -->

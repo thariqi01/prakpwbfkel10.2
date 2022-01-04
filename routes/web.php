@@ -11,6 +11,8 @@ use App\Http\Controllers\KecamatanController;
 use App\Http\Controllers\BencanaController;
 use App\Http\Controllers\PelaporanController;
 use App\Http\Controllers\DetailController;
+use App\Http\Controllers\HomeController;
+
 
 use GuzzleHttp\Middleware;
 
@@ -25,105 +27,99 @@ use GuzzleHttp\Middleware;
 |
 */
 
-// Route::get('/', function () {
-//     return view('login');
-// });
-
-Route::group(['Middleware'=>'Auth'],function()
-{
-    Route::get('/',function()
-    {
-        return view('login');
-    });
-    Route::get('home',function()
-    {
-        return view('home');
-    });
+Route::get('/', function () {
+    return view('home');
 });
 
 Auth::routes();
 
 Route::get('logout','App\Http\Controllers\LoginController@logout')->middleware('auth')->name('logout');
+Route::get('/home','App\Http\Controllers\HomeController@home')->name('home1');
 
-Route::get('home', 'App\Http\Controllers\HomeController@index')->middleware('auth')->name('home');
+Route::group(['middleware' => ['role']], function () {
 
-//user
-Route::get('user',[UserController::class,'user'])->middleware('auth');
-Route::post('user/store',[UserController::class,'store']);
-Route::match(['get', 'post'], 'user/edit/{id}', [UserController::class,'edit']);
-Route::get('user/delete/{id}',[UserController::class,'delete']);
-Route::get('user/bin',[UserController::class,'bin'])->middleware('auth');
-Route::get('user/restore/{id?}',[UserController::class,'restore']);
-Route::get('user/deleteperm/{id?}',[UserController::class,'deleteperm']);
+    //dashboard
+    Route::get('dashboard', 'App\Http\Controllers\HomeController@dashboard')->name('dashboard');
 
-//role
-Route::get('role',[RoleController::class,'role'])->middleware('auth');
-Route::post('role/store',[RoleController::class,'store']);
-Route::match(['get', 'post'], 'role/edit/{id}', [RoleController::class,'edit']);
-Route::get('role/delete/{id}',[RoleController::class,'delete']);
-Route::get('role/bin',[RoleController::class,'bin'])->middleware('auth');
-Route::get('role/restore/{id?}',[RoleController::class,'restore']);
-Route::get('role/deleteperm/{id?}',[RoleController::class,'deleteperm']);
+    //user
+    Route::get('dashboard/user',[UserController::class,'user'])->middleware('auth');
+    Route::post('dashboard/user/store',[UserController::class,'store']);
+    Route::match(['get', 'post'], 'dashboard/user/edit/{id}', [UserController::class,'edit']);
+    Route::get('dashboard/user/delete/{id}',[UserController::class,'delete']);
+    Route::get('dashboard/user/bin',[UserController::class,'bin'])->middleware('auth');
+    Route::get('dashboard/user/restore/{id?}',[UserController::class,'restore']);
+    Route::get('dashboard/user/deleteperm/{id?}',[UserController::class,'deleteperm']);
 
-//provinsi
-Route::get('provinsi',[ProvinsiController::class,'provinsi'])->middleware('auth');
-Route::post('provinsi/store',[ProvinsiController::class,'store']);
-Route::match(['get', 'post'], 'provinsi/edit/{id}', [ProvinsiController::class,'edit']);
-Route::get('provinsi/delete/{id}',[ProvinsiController::class,'delete']);
-Route::get('provinsi/bin',[ProvinsiController::class,'bin'])->middleware('auth');
-Route::get('provinsi/restore/{id?}',[ProvinsiController::class,'restore']);
-Route::get('provinsi/deleteperm/{id?}',[ProvinsiController::class,'deleteperm']);
+    //role
+    Route::get('dashboard/role',[RoleController::class,'role'])->middleware('auth');
+    Route::post('dashboard/role/store',[RoleController::class,'store']);
+    Route::match(['get', 'post'], 'dashboard/role/edit/{id}', [RoleController::class,'edit']);
+    Route::get('dashboard/role/delete/{id}',[RoleController::class,'delete']);
+    Route::get('dashboard/role/bin',[RoleController::class,'bin'])->middleware('auth');
+    Route::get('dashboard/role/restore/{id?}',[RoleController::class,'restore']);
+    Route::get('dashboard/role/deleteperm/{id?}',[RoleController::class,'deleteperm']);
 
-//kategori bencana
-Route::get('kategori',[KategoriController::class,'kategori'])->middleware('auth');
-Route::post('kategori/store',[KategoriController::class,'store']);
-Route::match(['get', 'post'], 'kategori/edit/{id}', [KategoriController::class,'edit']);
-Route::get('kategori/delete/{id}',[KategoriController::class,'delete']);
-Route::get('kategori/bin',[KategoriController::class,'bin'])->middleware('auth');
-Route::get('kategori/restore/{id?}',[KategoriController::class,'restore']);
-Route::get('kategori/deleteperm/{id?}',[KategoriController::class,'deleteperm']);
+    //provinsi
+    Route::get('dashboard/provinsi',[ProvinsiController::class,'provinsi'])->middleware('auth');
+    Route::post('dashboard/provinsi/store',[ProvinsiController::class,'store']);
+    Route::match(['get', 'post'], 'dashboard/provinsi/edit/{id}', [ProvinsiController::class,'edit']);
+    Route::get('dashboard/provinsi/delete/{id}',[ProvinsiController::class,'delete']);
+    Route::get('dashboard/provinsi/bin',[ProvinsiController::class,'bin'])->middleware('auth');
+    Route::get('dashboard/provinsi/restore/{id?}',[ProvinsiController::class,'restore']);
+    Route::get('dashboard/provinsi/deleteperm/{id?}',[ProvinsiController::class,'deleteperm']);
 
-//kota
-Route::get('kota',[KotaController::class,'kota'])->middleware('auth');
-Route::post('kota/store',[KotaController::class,'store']);
-Route::match(['get', 'post'], 'kota/edit/{id}', [KotaController::class,'edit']);
-Route::get('kota/delete/{id}',[KotaController::class,'delete']);
-Route::get('kota/bin',[KotaController::class,'bin'])->middleware('auth');
-Route::get('kota/restore/{id?}',[KotaController::class,'restore']);
-Route::get('kota/deleteperm/{id?}',[KotaController::class,'deleteperm']);
+    //kategori bencana
+    Route::get('dashboard/kategori',[KategoriController::class,'kategori'])->middleware('auth');
+    Route::post('dashboard/kategori/store',[KategoriController::class,'store']);
+    Route::match(['get', 'post'], 'dashboard/kategori/edit/{id}', [KategoriController::class,'edit']);
+    Route::get('dashboard/kategori/delete/{id}',[KategoriController::class,'delete']);
+    Route::get('dashboard/kategori/bin',[KategoriController::class,'bin'])->middleware('auth');
+    Route::get('dashboard/kategori/restore/{id?}',[KategoriController::class,'restore']);
+    Route::get('dashboard/kategori/deleteperm/{id?}',[KategoriController::class,'deleteperm']);
 
-//kecamatan
-Route::get('kecamatan',[KecamatanController::class,'kecamatan'])->middleware('auth');
-Route::post('kecamatan/store',[KecamatanController::class,'store']);
-Route::match(['get', 'post'], 'kecamatan/edit/{id}', [KecamatanController::class,'edit']);
-Route::get('kecamatan/delete/{id}',[KecamatanController::class,'delete']);
-Route::get('kecamatan/bin',[KecamatanController::class,'bin'])->middleware('auth');
-Route::get('kecamatan/restore/{id?}',[KecamatanController::class,'restore']);
-Route::get('kecamatan/deleteperm/{id?}',[KecamatanController::class,'deleteperm']);
+    //kota
+    Route::get('dashboard/kota',[KotaController::class,'kota'])->middleware('auth');
+    Route::post('dashboard/kota/store',[KotaController::class,'store']);
+    Route::match(['get', 'post'], 'dashboard/kota/edit/{id}', [KotaController::class,'edit']);
+    Route::get('dashboard/kota/delete/{id}',[KotaController::class,'delete']);
+    Route::get('dashboard/kota/bin',[KotaController::class,'bin'])->middleware('auth');
+    Route::get('dashboard/kota/restore/{id?}',[KotaController::class,'restore']);
+    Route::get('dashboard/kota/deleteperm/{id?}',[KotaController::class,'deleteperm']);
 
-//bencana
-Route::get('bencana',[BencanaController::class,'bencana'])->middleware('auth');
-Route::post('bencana/store',[BencanaController::class,'store']);
-Route::match(['get', 'post'], 'bencana/edit/{id}', [BencanaController::class,'edit']);
-Route::get('bencana/delete/{id}',[BencanaController::class,'delete']);
-Route::get('bencana/bin',[BencanaController::class,'bin'])->middleware('auth');
-Route::get('bencana/restore/{id?}',[BencanaController::class,'restore']);
-Route::get('bencana/deleteperm/{id?}',[BencanaController::class,'deleteperm']);
+    //kecamatan
+    Route::get('dashboard/dashboard/dashboard/kecamatan',[KecamatanController::class,'kecamatan'])->middleware('auth');
+    Route::post('dashboard/dashboard/dashboard/kecamatan/store',[KecamatanController::class,'store']);
+    Route::match(['get', 'post'], 'dashboard/dashboard/dashboard/kecamatan/edit/{id}', [KecamatanController::class,'edit']);
+    Route::get('dashboard/dashboard/dashboard/kecamatan/delete/{id}',[KecamatanController::class,'delete']);
+    Route::get('dashboard/dashboard/dashboard/kecamatan/bin',[KecamatanController::class,'bin'])->middleware('auth');
+    Route::get('dashboard/dashboard/dashboard/kecamatan/restore/{id?}',[KecamatanController::class,'restore']);
+    Route::get('dashboard/dashboard/dashboard/kecamatan/deleteperm/{id?}',[KecamatanController::class,'deleteperm']);
 
-//pelaporan
-Route::get('pelaporan',[PelaporanController::class,'pelaporan'])->middleware('auth');
-Route::post('pelaporan/store',[PelaporanController::class,'store']);
-Route::match(['get', 'post'], 'pelaporan/edit/{id}', [PelaporanController::class,'edit']);
-Route::get('pelaporan/delete/{id}',[PelaporanController::class,'delete']);
-Route::get('pelaporan/bin',[PelaporanController::class,'bin'])->middleware('auth');
-Route::get('pelaporan/restore/{id?}',[PelaporanController::class,'restore']);
-Route::get('pelaporan/deleteperm/{id?}',[PelaporanController::class,'deleteperm']);
+    //bencana
+    Route::get('dashboard/dashboard/bencana',[BencanaController::class,'bencana'])->middleware('auth');
+    Route::post('dashboard/dashboard/bencana/store',[BencanaController::class,'store']);
+    Route::match(['get', 'post'], 'dashboard/dashboard/bencana/edit/{id}', [BencanaController::class,'edit']);
+    Route::get('dashboard/dashboard/bencana/delete/{id}',[BencanaController::class,'delete']);
+    Route::get('dashboard/dashboard/bencana/bin',[BencanaController::class,'bin'])->middleware('auth');
+    Route::get('dashboard/dashboard/bencana/restore/{id?}',[BencanaController::class,'restore']);
+    Route::get('dashboard/dashboard/bencana/deleteperm/{id?}',[BencanaController::class,'deleteperm']);
 
-//detail
-Route::get('detail',[DetailController::class,'detail'])->middleware('auth');
-Route::post('detail/store',[DetailController::class,'store']);
-Route::match(['get', 'post'], 'detail/edit/{id}', [DetailController::class,'edit']);
-Route::get('detail/delete/{id}',[DetailController::class,'delete']);
-Route::get('detail/bin',[DetailController::class,'bin'])->middleware('auth');
-Route::get('detail/restore/{id?}',[DetailController::class,'restore']);
-Route::get('detail/deleteperm/{id?}',[DetailController::class,'deleteperm']);
+    //pelaporan
+    Route::get('dashboard/pelaporan',[PelaporanController::class,'pelaporan'])->middleware('auth');
+    Route::post('dashboard/pelaporan/store',[PelaporanController::class,'store']);
+    Route::match(['get', 'post'], 'dashboard/pelaporan/edit/{id}', [PelaporanController::class,'edit']);
+    Route::get('dashboard/pelaporan/delete/{id}',[PelaporanController::class,'delete']);
+    Route::get('dashboard/pelaporan/bin',[PelaporanController::class,'bin'])->middleware('auth');
+    Route::get('dashboard/pelaporan/restore/{id?}',[PelaporanController::class,'restore']);
+    Route::get('dashboard/pelaporan/deleteperm/{id?}',[PelaporanController::class,'deleteperm']);
+
+    //detail
+    Route::get('dashboard/detail',[DetailController::class,'detail'])->middleware('auth');
+    Route::post('dashboard/detail/store',[DetailController::class,'store']);
+    Route::match(['get', 'post'], 'dashboard/detail/edit/{id}', [DetailController::class,'edit']);
+    Route::get('dashboard/detail/delete/{id}',[DetailController::class,'delete']);
+    Route::get('dashboard/detail/bin',[DetailController::class,'bin'])->middleware('auth');
+    Route::get('dashboard/detail/restore/{id?}',[DetailController::class,'restore']);
+    Route::get('dashboard/detail/deleteperm/{id?}',[DetailController::class,'deleteperm']);
+
+});

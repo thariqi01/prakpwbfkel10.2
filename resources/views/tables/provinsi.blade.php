@@ -26,29 +26,12 @@
 <section class="content">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-12">
-              <!-- MESSAGE CENTER -->
-                @if (session('tambah'))
-                <div class="alert alert-success">
-                    {{ session('tambah') }}
-                </div>
-                @endif
-                @if (session('edit'))
-                <div class="alert alert-success">
-                    {{ session('edit') }}
-                </div>
-                @endif                 
-                @if (session('hapus'))
-                <div class="alert alert-success">
-                    {{ session('hapus') }}
-                </div>
-                @endif        
-                <!-- /.MESSAGE CENTER -->
+            <div class="col-12">            
                 <div class="card">
                     <div class="card-header">
                       <h5 class="card-title">Data Provinsi</h5>
                       <div class="float-sm-right"> 
-                        <a href="{{ url('provinsi/bin') }}"  class="btn btn-danger btn-sm">
+                        <a href="{{ url('dashboard/provinsi/bin') }}"  class="btn btn-danger btn-sm">
                           <i class="fa fa-trash fa-fw "></i>Bin
                         </a>                                           
                         <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#tambah-prov">
@@ -134,7 +117,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="{{ url('provinsi/edit/'.$p->id_provinsi) }}" method="post">
+        <form action="{{ url('dashboard/provinsi/edit/'.$p->id_provinsi) }}" method="post">
           @csrf                  
 
           <div class="form-group">
@@ -174,7 +157,7 @@
       </div>
       <div class="modal-footer justify-content-between">
         <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-        <a href="{{ url('provinsi/delete/'.$p->id_provinsi) }}" class="btn btn-primary">Yes</a>
+        <a href="{{ url('dashboard/provinsi/delete/'.$p->id_provinsi) }}" class="btn btn-primary">Yes</a>
       </div>
     </div>
     <!-- /.modal-content -->

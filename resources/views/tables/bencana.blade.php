@@ -26,60 +26,48 @@
 <section class="content">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-12">
-              <!-- MESSAGE CENTER -->
-                @if (session('tambah'))
-                <div class="alert alert-success">
-                    {{ session('tambah') }}
-                </div>
-                @endif
-                @if (session('edit'))
-                <div class="alert alert-success">
-                    {{ session('edit') }}
-                </div>
-                @endif                
-                <!-- /.MESSAGE CENTER -->
-                <div class="card">
-                    <div class="card-header">
-                      <h5 class="card-title">Data Bencana</h5>
-                      <div class="float-sm-right"> 
-                        <a href="{{ url('bencana/bin') }}"  class="btn btn-danger btn-sm">
-                          <i class="fa fa-trash fa-fw "></i>Bin
-                        </a>                                           
-                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#tambah-bencana">
-                          <i class="fa fa-plus fa-fw"></i>Tambah Kategori
-                        </button>                          
-                      </div>
-                    </div>                
-                    <!-- /.card-header -->
-                    <div class="card-body">
-                    <table id="example1" class="table table-bordered table-striped">
-                        <thead>
-                        <th> ID Bencana </th>
-                        <th> ID Kategori Bencana </th>
-                        <th> Nama Bencana</th>                 
-                        <th> Opsi </th>
-                        </thead>
-                        <tbody>                          
-                          @foreach($bencana as $p)
-                            <tr>                            
-                              <td>{{ $p->id_bencana}}</td>
-                              <td>{{ $p->id_kategoribencana}}</td>
-                              <td>{{ $p->nama_bencana }}</td>                           
-                              <td class="text-center">                                      
-                                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#edit{{ $p->id_bencana }}">
-                                  Edit
-                                </button>                                                                                        
-                                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete{{ $p->id_bencana }}">
-                                  Delete
-                                </button>
-                              </td>
-                            </tr>
-                          @endforeach            
-                        </tbody>                      
-                    </table>
+            <div class="col-12">              
+              <div class="card">
+                  <div class="card-header">
+                    <h5 class="card-title">Data Bencana</h5>
+                    <div class="float-sm-right"> 
+                      <a href="{{ url('dashboard/bencana/bin') }}"  class="btn btn-danger btn-sm">
+                        <i class="fa fa-trash fa-fw "></i>Bin
+                      </a>                                           
+                      <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#tambah-bencana">
+                        <i class="fa fa-plus fa-fw"></i>Tambah Kategori
+                      </button>                          
                     </div>
-                    <!-- /.card-body -->
+                  </div>                
+                  <!-- /.card-header -->
+                  <div class="card-body">
+                  <table id="example1" class="table table-bordered table-striped">
+                      <thead>
+                      <th> ID Bencana </th>
+                      <th> ID Kategori Bencana </th>
+                      <th> Nama Bencana</th>                 
+                      <th> Opsi </th>
+                      </thead>
+                      <tbody>                          
+                        @foreach($bencana as $p)
+                          <tr>                            
+                            <td>{{ $p->id_bencana}}</td>
+                            <td>{{ $p->id_kategoribencana}}</td>
+                            <td>{{ $p->nama_bencana }}</td>                           
+                            <td class="text-center">                                      
+                              <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#edit{{ $p->id_bencana }}">
+                                Edit
+                              </button>                                                                                        
+                              <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#delete{{ $p->id_bencana }}">
+                                Delete
+                              </button>
+                            </td>
+                          </tr>
+                        @endforeach            
+                      </tbody>                      
+                  </table>
+                  </div>
+                  <!-- /.card-body -->
                 </div>
                 <!-- /.card -->          
             </div>
@@ -143,7 +131,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form action="{{ url('bencana/edit/'.$p->id_bencana) }}" method="post">
+        <form action="{{ url('dashboard/bencana/edit/'.$p->id_bencana) }}" method="post">
           @csrf                  
 
           <div class="form-group">
@@ -196,7 +184,7 @@
       </div>
       <div class="modal-footer justify-content-between">
         <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
-        <a href="{{ url('bencana/delete/'.$p->id_bencana) }}" class="btn btn-primary">Yes</a>
+        <a href="{{ url('dashboard/bencana/delete/'.$p->id_bencana) }}" class="btn btn-primary">Yes</a>
       </div>
     </div>
     <!-- /.modal-content -->

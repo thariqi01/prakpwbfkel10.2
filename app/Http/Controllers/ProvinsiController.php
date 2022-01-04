@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Models\Provinsi;
@@ -24,7 +25,9 @@ class ProvinsiController extends Controller
             'nama_provinsi' => $request->nama_provinsi,
         ]);
 
-        return redirect('provinsi')->with('tambah','Data berhasil ditambah!');    
+        Toastr::success('Data user berhasil ditambah','Success');
+        return redirect()->back();
+
     }
 
     public function edit(Request $request, $id_provinsi)
@@ -41,28 +44,11 @@ class ProvinsiController extends Controller
                 'nama_provinsi'=>$p['nama_provinsi'],
             ]);
 
-            return redirect()->back()->with('edit','Data behasil diubah!');
+            Toastr::success('Data user berhasil diubah','Warning');
+            return redirect()->back();
 
         }
     }
-    // public function edit($id){
-    //     // mengambil data siswa berdasarkan id yang dipilih
-    //     $provinsi = DB::table('provinsi')->where('id_provinsi',$id)->get(); 
-          
-    //     // passing data siswa yang didapat ke view edit.blade.php 
-    //     return view('edit.provinsiedit',['provinsi' => $provinsi]);
-    // }  
-
-    // public function update(Request $request){
-    //     // update data siswa
-    //     DB::table('provinsi')->where('id_provinsi',$request->id)->update([
-    //         'nama_provinsi' => $request->nama_provinsi
-    //     ]);
-    
-    //     // alihkan halaman ke halaman siswa
-    //     return redirect('/provinsi');
-    // }   
-
     
     public function delete($id_provinsi){
         date_default_timezone_set('Asia/Jakarta');
@@ -70,7 +56,9 @@ class ProvinsiController extends Controller
             'DELETED_AT' => date('Y-m-d H:i:s')
         ]);
         
-        return redirect('/provinsi');
+        Toastr::success('Data user berhasil dihapus','Success');
+        return redirect()->back();
+    
     }
 
     public function bin()
@@ -87,7 +75,8 @@ class ProvinsiController extends Controller
             $nama_provinsi = Provinsi::onlyTrashed()->restore();
         }
 
-        return redirect('provinsi/bin')->with('status','Data berhasil di-restore!'); 
+        Toastr::success('Data user berhasil dihapus','Info');
+        return redirect()->back(); 
 
     }
 
@@ -99,6 +88,8 @@ class ProvinsiController extends Controller
             $nama_provinsi = Provinsi::onlyTrashed()->forceDelete();
         }
 
-        return redirect('provinsi/bin')->with('status','Data berhasil dihapus permanen!');
+        Toastr::success('Data user berhasil dihapus permanen','Error');      
+        return redirect()->back();    
+    
     }
 }
