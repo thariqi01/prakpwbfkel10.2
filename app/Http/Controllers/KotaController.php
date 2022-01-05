@@ -32,7 +32,7 @@ class KotaController extends Controller
             'nama_kota' => $request->nama_kota,
         ]);
 
-        Toastr::success('Data user berhasil ditambah','Success');
+        Toastr::success('Data kota berhasil ditambah','Tambah');
         return redirect()->back();
     
     }
@@ -53,7 +53,7 @@ class KotaController extends Controller
                 'nama_kota'=>$p['nama_kota'],
             ]);
 
-            Toastr::success('Data user berhasil diubah','Warning');
+            Toastr::warning('Data kota berhasil diubah','Edit');
             return redirect()->back();
 
         }
@@ -65,7 +65,7 @@ class KotaController extends Controller
             'DELETED_AT' => date('Y-m-d H:i:s')
         ]);
         
-        Toastr::success('Data user berhasil dihapus','Success');
+        Toastr::error('Data kota berhasil dihapus','Hapus');
         return redirect()->back();
 
     }

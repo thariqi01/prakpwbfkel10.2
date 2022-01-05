@@ -11,7 +11,7 @@
   <!-- Font Awesome -->
   <link rel="stylesheet" href="{{asset('template')}}/plugins/fontawesome-free/css/all.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="{{asset('template')}}/dist/css/adminlte.css">
+  <link rel="stylesheet" href="{{asset('template')}}/dist/css/adminlte.min.css">
   <!-- DataTables -->
   <link rel="stylesheet" href="{{asset('template')}}/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
   <link rel="stylesheet" href="{{asset('template')}}/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
@@ -143,7 +143,7 @@
             <li class="user-footer">
               <div class="pull-left"></div>
                 <a href="#" class="btn btn-default btn-flat">Profile</a>
-                <a class="btn btn-default btn-flat" href="{{ route('logout') }}"
+                <a href="{{ route('logout') }}" class="btn btn-default btn-flat"
                   onclick="event.preventDefault();
                   document.getElementById('logout-form').submit();">
                   {{ __('Logout') }}
@@ -163,7 +163,7 @@
     <!-- Brand Logo -->
     <a href="/dashboard" class="brand-link">
         <img src="{{asset('template')}}/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">DisRep</span>
+        <span class="brand-text">DisRep</span>
     </a>
 
     <!-- Sidebar -->
@@ -279,17 +279,8 @@
     </div>
     <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong> All rights reserved.
   </footer>
-
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  
-  <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
-
-
 
 <!-- jQuery -->
 <script src="{{asset('template')}}/plugins/jquery/jquery.min.js"></script>

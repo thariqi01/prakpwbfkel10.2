@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Http\Request;
+use App\Providers\RouteServiceProvider;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -75,7 +75,7 @@ class LoginController extends Controller
                 return redirect()->route('home1');
             }
         }else{
-            return redirect()->route('login');
+            return redirect()->route('login')->with('error', 'Email atau Password anda salah!');
         }
           
     }

@@ -31,7 +31,7 @@ class BencanaController extends Controller
             'nama_bencana' => $request->nama_bencana,
         ]);
 
-        Toastr::success('Data user berhasil ditambah','Success');
+        Toastr::success('Data bencana berhasil ditambah','Tambah');
         return redirect()->back();
 
     }
@@ -52,7 +52,7 @@ class BencanaController extends Controller
                 'nama_bencana'=>$p['nama_bencana'],
             ]);
 
-            Toastr::success('Data user berhasil diubah','Warning');
+            Toastr::warning('Data bencana berhasil diubah','edit');
             return redirect()->back();
 
         }
@@ -62,7 +62,7 @@ class BencanaController extends Controller
         date_default_timezone_set('Asia/Jakarta');
         DB::table('bencana')->where('id_bencana',$id_bencana)->update(['DELETED_AT' => date('Y-m-d H:i:s')]);
         
-        Toastr::success('Data user berhasil dihapus','Success');
+        Toastr::error('Data bencana berhasil dihapus','Hapus');
         return redirect()->back();
 
     }

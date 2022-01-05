@@ -43,7 +43,7 @@ class PelaporanController extends Controller
             'status' => $request->status,
         ]);
 
-        Toastr::success('Data user berhasil ditambah','Success');
+        Toastr::success('Data Pelaporan berhasil ditambah','Tambah');
         return redirect()->back();
 
     }
@@ -70,7 +70,7 @@ class PelaporanController extends Controller
                 'status'=>$p['status'],
             ]);
 
-            Toastr::success('Data user berhasil diubah','Warning');
+            Toastr::warning('Data pelaporan berhasil diubah','Edit');
             return redirect()->back();
 
         }
@@ -82,7 +82,7 @@ class PelaporanController extends Controller
             'DELETED_AT' => date('Y-m-d H:i:s')
         ]);
         
-        Toastr::success('Data user berhasil dihapus','Success');
+        Toastr::error('Data pelaporan berhasil dihapus','Hapus');
         return redirect()->back();
     
     }

@@ -40,7 +40,7 @@ class DetailController extends Controller
             'kondisi' => $request->kondisi,
         ]);
 
-        Toastr::success('Data user berhasil ditambah','Success');
+        Toastr::success('Data detail bencana berhasil ditambah','Tambah');
         return redirect()->back(); 
     }
 
@@ -66,7 +66,7 @@ class DetailController extends Controller
                 'kondisi'=> $p['kondisi'],
             ]);
 
-            Toastr::success('Data user berhasil diubah','Warning');
+            Toastr::warning('Data detail bencana berhasil diubah','Edit');
             return redirect()->back();
 
         }
@@ -78,7 +78,7 @@ class DetailController extends Controller
             'DELETED_AT' => date('Y-m-d H:i:s')
         ]);
         
-        Toastr::success('Data user berhasil dihapus','Success');
+        Toastr::error('Data detail bencana berhasil dihapus','Hapus');
         return redirect()->back();
         
     }

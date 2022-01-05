@@ -10,12 +10,12 @@
       <div class="col-sm-6">
         <h1>Tabel Master</h1>
       </div>
-        <div class="col-sm-6">
-          <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="{{ url('') }}">Home</a></li>
-            <li class="breadcrumb-item active">Data User</li>
-          </ol>
-        </div>
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a href="{{ url('') }}">Dashboard</a></li>
+          <li class="breadcrumb-item active">User</li>
+        </ol>
+      </div>
     </div>
   </div>
 </section>
@@ -26,24 +26,7 @@
 <section class="content">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-12">
-              <!-- MESSAGE CENTER -->
-                @if (session('tambah'))
-                <div class="alert alert-success">
-                    {{ session('tambah') }}
-                </div>
-                @endif
-                @if (session('edit'))
-                <div class="alert alert-success">
-                    {{ session('edit') }}
-                </div>
-                @endif
-                @if (session('hapus'))
-                <div class="alert alert-success">
-                    {{ session('hapus') }}
-                </div>
-                @endif
-                <!-- /.MESSAGE CENTER -->
+            <div class="col-12">             
                 <div class="card">
                     <div class="card-header">
                       <h5 class="card-title">Data User</h5>
@@ -56,16 +39,15 @@
                         </button>                          
                       </div>
                     </div>                
-                    <!-- /.card-header -->
                     <div class="card-body">
-                    <table id="example1" class="table table-bordered table-striped">
+                      <table id="example1" class="table table-bordered table-striped">
                         <thead>
-                        <th> ID User </th>
-                        <th> Nama </th>
-                        <th> Email </th>
-                        <th> Tanggal Lahir </th>
-                        <th> Role </th>
-                        <th> Opsi </th>
+                          <th> ID User </th>
+                          <th> Nama </th>
+                          <th> Email </th>
+                          <th> Tanggal Lahir </th>
+                          <th> Role </th>
+                          <th> Opsi </th>
                         </thead>
                         <tbody>                          
                           @foreach($users as $p)
@@ -86,15 +68,11 @@
                             </tr>
                           @endforeach            
                         </tbody>                      
-                    </table>
+                      </table>
                     </div>
-                    <!-- /.card-body -->
                 </div>
-                <!-- /.card -->          
             </div>
-            <!-- /.col -->
         </div>
-      <!-- /.row -->
     </div>
 </section>
 

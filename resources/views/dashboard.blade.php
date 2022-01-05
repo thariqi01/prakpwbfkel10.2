@@ -27,8 +27,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Dashboard') }}</div>
-
-                <div class="card-body">
+                    <div class="card-body">
                     @if (session('error'))
                         <div class="alert alert-danger" role="alert">
                         {{ session('error') }}
@@ -41,7 +40,7 @@
                     @endif
 
                     {{ __('Welcome Back, ') }} {{ Auth::user()->name ?? 'none' }}
-                </div>
+                    </div>
             </div>
         </div>
     </div>

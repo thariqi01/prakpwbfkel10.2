@@ -31,7 +31,7 @@ class KecamatanController extends Controller
             'nama_kecamatan' => $request->nama_kecamatan,
         ]);
 
-        Toastr::success('Data user berhasil ditambah','Success');
+        Toastr::success('Data kecamatan berhasil ditambah','Tambah');
         return redirect()->back();
 
     }
@@ -52,7 +52,7 @@ class KecamatanController extends Controller
                 'nama_kecamatan'=>$p['nama_kecamatan'],
             ]);
 
-            Toastr::success('Data user berhasil diubah','Warning');
+            Toastr::warning('Data kecamatan berhasil diubah','Edit');
             return redirect()->back();
 
         }
@@ -64,7 +64,7 @@ class KecamatanController extends Controller
             'DELETED_AT' => date('Y-m-d H:i:s')
         ]);
         
-        Toastr::success('Data user berhasil dihapus','Success');
+        Toastr::error('Data user berhasil dihapus','Hapus');
         return redirect()->back();
 
     }

@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/animate.css">
     <link rel="stylesheet" href="css/LineIcons.css">
+    <link rel="stylesheet" href="template/plugins/fontawesome-free/css/all.min.css">
     <link rel="stylesheet" href="css/owl.carousel.css">
     <link rel="stylesheet" href="css/owl.theme.css">
     <link rel="stylesheet" href="css/magnific-popup.css">
@@ -23,19 +24,14 @@
 
   </head>
   
-  <body>
-    @if (session('error'))
+  <body>    
+    <!-- Header Section Start -->
+    <header id="home" class="hero-area">    
+      @if (session('error'))
       <div class="alert alert-danger" role="alert">
         {{ session('error') }}
       </div>
-    @endif
-    @if (session('status'))
-      <div class="alert alert-success" role="alert">
-        {{ session('status') }}
-      </div>
-    @endif
-    <!-- Header Section Start -->
-    <header id="home" class="hero-area">    
+      @endif
       <div class="overlay">
         <span></span>
         <span></span>
@@ -52,7 +48,7 @@
                 <a class="nav-link page-scroll" href="#home">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link page-scroll" href="#services">Tentang Kita</a>
+                <a class="nav-link page-scroll" href="#services">Tentang</a>
               </li>                                         
               <li class="nav-item">
                 <a class="nav-link page-scroll" href="#team">Tim</a>
@@ -331,24 +327,34 @@
       </div>
     </section>
     <!-- Contact Us Section End -->
+    
 
-    <!-- Footer Section Start -->
-    <div class="container footer-content">
-      <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-        <p class="col-md-4 mb-0 text-muted">&copy; 2021 DisRep, Inc</p>
-    
-        <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
-          <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
-        </a>
-    
-        <ul class="nav col-md-4 justify-content-end">
-          <li class="nav-item"><a href="#home" class="nav-link px-2 text-muted page-scroll">Home</a></li>
-          <li class="nav-item"><a href="#about" class="nav-link px-2 text-muted page-scroll">Tentang</a></li>
-          <li class="nav-item"><a href="#team" class="nav-link px-2 text-muted page-scroll">Tim</a></li>
-          <li class="nav-item"><a href="#contact" class="nav-link px-2 text-muted page-scroll">Kontak</a></li>
-        </ul>
-      </footer>
-    </div>
+    <!-- Footer Section Start -->  
+    <section class="footer">
+      
+      <div class="footer-social">
+        <a href=""><i class="fab fa-instagram "></i></a>
+        <a href=""><i class="fab fa-twitter"></i></a>
+        <a href=""><i class="fab fa-whatsapp"></i></a>
+      </div>
+      <ul class="footer-list">
+        <li>
+          <a class="page-scroll" href="#home">Home</a>
+        </li>
+        <li>
+          <a class="page-scroll" href="#about">Tentang</a>
+        </li>
+        <li>
+          <a class="page-scroll" href="#team">Tim</a>
+        </li>
+        <li>
+          <a class="page-scroll" href="#contact">Hubungi Kami</a>
+        </li>
+      </ul>
+      <p class="footer-copyright">
+        &copy; 2021 DisRep, Inc
+      </p>
+    </section>
     <!-- Footer Section End --> 
 
 

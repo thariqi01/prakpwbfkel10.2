@@ -25,7 +25,7 @@ class KategoriController extends Controller
             'kategori_bencana' => $request->kategori_bencana,
         ]);
 
-        Toastr::success('Data user berhasil ditambah','Success');
+        Toastr::success('Data kategori bencana berhasil ditambah','Tambah');
         return redirect()->back();
    
     }
@@ -44,7 +44,7 @@ class KategoriController extends Controller
                 'kategori_bencana'=>$p['kategori_bencana'],
             ]);
 
-            Toastr::success('Data user berhasil diubah','Warning');
+            Toastr::warning('Data kategori bencana berhasil diubah','Edit');
             return redirect()->back();
 
         }
@@ -54,7 +54,7 @@ class KategoriController extends Controller
         date_default_timezone_set('Asia/Jakarta');
         DB::table('kategori')->where('id_kategoribencana',$id_kategoribencana)->update(['DELETED_AT' => date('Y-m-d H:i:s')]);
         
-        Toastr::success('Data user berhasil dihapus','Success');
+        Toastr::error('Data kategori bencana berhasil dihapus','Hapus');
         return redirect()->back();
     }
 
@@ -72,7 +72,7 @@ class KategoriController extends Controller
             $kategori_bencana = Kategori::onlyTrashed()->restore();
         }
 
-        Toastr::success('Data user berhasil dihapus','Info');
+        Toastr::info('Data kategori bencana berhasil dihapus','Restore');
         return redirect()->back();  
 
     }
@@ -85,7 +85,7 @@ class KategoriController extends Controller
             $kategori_bencana = Kategori::onlyTrashed()->forceDelete();
         }
 
-        Toastr::success('Data user berhasil dihapus permanen','Error');      
+        Toastr::error('Data kategori bencana berhasil dihapus permanen','Hapus Permanen');      
         return redirect()->back();
         
     }

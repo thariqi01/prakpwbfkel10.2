@@ -32,7 +32,6 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
 Route::get('logout','App\Http\Controllers\LoginController@logout')->middleware('auth')->name('logout');
 Route::get('/home','App\Http\Controllers\HomeController@home')->name('home1');
 
@@ -87,22 +86,22 @@ Route::group(['middleware' => ['role']], function () {
     Route::get('dashboard/kota/deleteperm/{id?}',[KotaController::class,'deleteperm']);
 
     //kecamatan
-    Route::get('dashboard/dashboard/dashboard/kecamatan',[KecamatanController::class,'kecamatan'])->middleware('auth');
-    Route::post('dashboard/dashboard/dashboard/kecamatan/store',[KecamatanController::class,'store']);
-    Route::match(['get', 'post'], 'dashboard/dashboard/dashboard/kecamatan/edit/{id}', [KecamatanController::class,'edit']);
-    Route::get('dashboard/dashboard/dashboard/kecamatan/delete/{id}',[KecamatanController::class,'delete']);
-    Route::get('dashboard/dashboard/dashboard/kecamatan/bin',[KecamatanController::class,'bin'])->middleware('auth');
-    Route::get('dashboard/dashboard/dashboard/kecamatan/restore/{id?}',[KecamatanController::class,'restore']);
-    Route::get('dashboard/dashboard/dashboard/kecamatan/deleteperm/{id?}',[KecamatanController::class,'deleteperm']);
+    Route::get('dashboard/kecamatan',[KecamatanController::class,'kecamatan'])->middleware('auth');
+    Route::post('dashboard/kecamatan/store',[KecamatanController::class,'store']);
+    Route::match(['get', 'post'], 'dashboard/kecamatan/edit/{id}', [KecamatanController::class,'edit']);
+    Route::get('dashboard/kecamatan/delete/{id}',[KecamatanController::class,'delete']);
+    Route::get('dashboard/kecamatan/bin',[KecamatanController::class,'bin'])->middleware('auth');
+    Route::get('dashboard/kecamatan/restore/{id?}',[KecamatanController::class,'restore']);
+    Route::get('dashboard/kecamatan/deleteperm/{id?}',[KecamatanController::class,'deleteperm']);
 
     //bencana
-    Route::get('dashboard/dashboard/bencana',[BencanaController::class,'bencana'])->middleware('auth');
-    Route::post('dashboard/dashboard/bencana/store',[BencanaController::class,'store']);
-    Route::match(['get', 'post'], 'dashboard/dashboard/bencana/edit/{id}', [BencanaController::class,'edit']);
-    Route::get('dashboard/dashboard/bencana/delete/{id}',[BencanaController::class,'delete']);
-    Route::get('dashboard/dashboard/bencana/bin',[BencanaController::class,'bin'])->middleware('auth');
-    Route::get('dashboard/dashboard/bencana/restore/{id?}',[BencanaController::class,'restore']);
-    Route::get('dashboard/dashboard/bencana/deleteperm/{id?}',[BencanaController::class,'deleteperm']);
+    Route::get('dashboard/bencana',[BencanaController::class,'bencana'])->middleware('auth');
+    Route::post('dashboard/bencana/store',[BencanaController::class,'store']);
+    Route::match(['get', 'post'], 'dashboard/bencana/edit/{id}', [BencanaController::class,'edit']);
+    Route::get('dashboard/bencana/delete/{id}',[BencanaController::class,'delete']);
+    Route::get('dashboard/bencana/bin',[BencanaController::class,'bin'])->middleware('auth');
+    Route::get('dashboard/bencana/restore/{id?}',[BencanaController::class,'restore']);
+    Route::get('dashboard/bencana/deleteperm/{id?}',[BencanaController::class,'deleteperm']);
 
     //pelaporan
     Route::get('dashboard/pelaporan',[PelaporanController::class,'pelaporan'])->middleware('auth');

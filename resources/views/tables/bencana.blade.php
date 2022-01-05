@@ -1,6 +1,6 @@
 @extends('layout.template')
 
-@section('title','dashboard')
+@section('title','bencana')
 
 @section('breadcrumbs')
 <!-- Content Header (Page header) -->
@@ -12,7 +12,7 @@
       </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="{{ url('') }}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ url('') }}">Dashboard</a></li>
             <li class="breadcrumb-item active">Bencana</li>
           </ol>
         </div>

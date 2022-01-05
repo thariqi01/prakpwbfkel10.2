@@ -25,7 +25,7 @@ class RoleController extends Controller
             'role' => $request->role,
         ]);
 
-        Toastr::success('Data user berhasil ditambah','Tambah');
+        Toastr::success('Data role berhasil ditambah','Tambah');
         return redirect()->back();
 
     }
@@ -44,7 +44,7 @@ class RoleController extends Controller
                 'role'=>$p['role'],
             ]);
 
-            Toastr::warning('Data user berhasil diubah','Edit');
+            Toastr::warning('Data role berhasil diubah','Edit');
             return redirect()->back();
 
         }
@@ -55,7 +55,7 @@ class RoleController extends Controller
         date_default_timezone_set('Asia/Jakarta');
         DB::table('role')->where('id_role',$id_role)->update(['DELETED_AT' => date('Y-m-d H:i:s')]);
 
-        Toastr::error('Data user berhasil dihapus','Hapus');
+        Toastr::error('Data role berhasil dihapus','Hapus');
         return redirect()->back();
     }
     
@@ -73,7 +73,7 @@ class RoleController extends Controller
             $role = Role::onlyTrashed()->restore();
         }
         
-        Toastr::info('Data user berhasil direstore','Restore');
+        Toastr::info('Data role berhasil direstore','Restore');
         return redirect()->back(); 
 
     }
@@ -86,7 +86,7 @@ class RoleController extends Controller
             $role = Role::onlyTrashed()->forceDelete();
         }
 
-        Toastr::error('Data user berhasil dihapus secara permanen','Hapus Permanen');      
+        Toastr::error('Data role berhasil dihapus secara permanen','Hapus Permanen');      
         return redirect()->back();
     }
 }

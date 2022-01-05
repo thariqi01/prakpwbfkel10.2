@@ -25,7 +25,7 @@ class ProvinsiController extends Controller
             'nama_provinsi' => $request->nama_provinsi,
         ]);
 
-        Toastr::success('Data user berhasil ditambah','Success');
+        Toastr::success('Data provinsi berhasil ditambah','Tambah');
         return redirect()->back();
 
     }
@@ -44,7 +44,7 @@ class ProvinsiController extends Controller
                 'nama_provinsi'=>$p['nama_provinsi'],
             ]);
 
-            Toastr::success('Data user berhasil diubah','Warning');
+            Toastr::Warning('Data provinsi berhasil diubah','Edit');
             return redirect()->back();
 
         }
@@ -56,7 +56,7 @@ class ProvinsiController extends Controller
             'DELETED_AT' => date('Y-m-d H:i:s')
         ]);
         
-        Toastr::success('Data user berhasil dihapus','Success');
+        Toastr::error('Data provinsi berhasil dihapus','Hapus');
         return redirect()->back();
     
     }
@@ -75,7 +75,7 @@ class ProvinsiController extends Controller
             $nama_provinsi = Provinsi::onlyTrashed()->restore();
         }
 
-        Toastr::success('Data user berhasil dihapus','Info');
+        Toastr::info('Data provinsi berhasil dihapus','Restore');
         return redirect()->back(); 
 
     }
@@ -88,7 +88,7 @@ class ProvinsiController extends Controller
             $nama_provinsi = Provinsi::onlyTrashed()->forceDelete();
         }
 
-        Toastr::success('Data user berhasil dihapus permanen','Error');      
+        Toastr::error('Data provinsi berhasil dihapus permanen','Hapus Permanen');      
         return redirect()->back();    
     
     }

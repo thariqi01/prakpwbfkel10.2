@@ -12,7 +12,7 @@
       </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="{{ url('') }}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ url('') }}">Dashboard</a></li>
             <li class="breadcrumb-item active">Role</li>
           </ol>
         </div>
@@ -26,26 +26,10 @@
 <section class="content">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-12">  
-                <!-- MESSAGE CENTER -->
-                @if (session('tambah'))
-                <div class="alert alert-success">
-                    {{ session('tambah') }}
-                </div>
-                @endif     
-                @if (session('edit'))
-                <div class="alert alert-success">
-                    {{ session('edit') }}
-                </div>
-                @endif
-                @if (session('hapus'))
-                <div class="alert alert-success">
-                    {{ session('hapus') }}
-                </div>
-                @endif       
+            <div class="col-12">                  
                 <div class="card">
                     <div class="card-header">
-                      <h5 class="card-title">Role</h5>
+                      <h5 class="card-title">Data Role</h5>
                       <div class="float-sm-right"> 
                         <a href="{{ url('dashboard/role/bin') }}"  class="btn btn-danger btn-sm">
                           <i class="fa fa-trash fa-fw "></i>Bin
