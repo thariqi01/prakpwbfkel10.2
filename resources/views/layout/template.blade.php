@@ -17,6 +17,7 @@
   <link rel="stylesheet" href="{{asset('template')}}/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
   <link rel="stylesheet" href="{{asset('template')}}/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
   <link rel="stylesheet" href="//cdn.bootcss.com/toastr.js/latest/css/toastr.min.css"> 
+  <link rel="shortcut icon" href="img/coba2.png" type="image/png">
 </head>
 
 <body class="hold-transition sidebar-mini">

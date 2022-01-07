@@ -51,7 +51,8 @@
                 <th> Status </th>                 
                 <th> Opsi </th>
                 </thead>
-                <tbody>                          
+                <tbody>                      
+                @if($pelaporan->count() > 0)    
                 @foreach($pelaporan as $p)
                   <tr>                            
                   <td>{{ $p->id_pelaporan }}</td>
@@ -69,7 +70,12 @@
                       </button>
                   </td>
                   </tr>
-                @endforeach            
+                @endforeach
+                @else
+                  <tr>
+                    <td colspan="8" class="text-center"> Tidak ada data</td>
+                  </tr>    
+                  @endif            
                 </tbody>                      
               </table>
             </div>

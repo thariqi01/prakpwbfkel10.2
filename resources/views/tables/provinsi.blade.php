@@ -47,7 +47,8 @@
                         <th> Nama Provinsi</th>                 
                         <th> Opsi </th>
                         </thead>
-                        <tbody>                          
+                        <tbody>  
+                          @if($provinsi->count() > 0)                        
                           @foreach($provinsi as $p)
                             <tr>                            
                               <td>{{ $p->id_provinsi }}</td>
@@ -61,7 +62,12 @@
                                 </button>
                               </td>
                             </tr>
-                          @endforeach            
+                          @endforeach 
+                          @else
+                          <tr>
+                            <td colspan="5" class="text-center"> Tidak ada data</td>
+                          </tr>    
+                          @endif           
                         </tbody>                      
                     </table>
                     </div>

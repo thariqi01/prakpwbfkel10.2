@@ -31,7 +31,7 @@
                   <div class="card-header">
                     <h5 class="card-title">Data Detail Korban</h5>
                     <div class="float-sm-right"> 
-                      <a href="{{ url('dashboard/detailkorban/bin') }}"  class="btn btn-danger btn-sm">
+                      <a href="{{ url('dashboard/detail/bin') }}"  class="btn btn-danger btn-sm">
                         <i class="fa fa-trash fa-fw "></i>Bin
                       </a>                                           
                       <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#tambah-detail">
@@ -51,8 +51,9 @@
                         <th> Kondisi </th>                 
                         <th> Opsi </th>
                         </thead>
-                        <tbody>                          
-                        @foreach($detailkorban as $p)
+                        <tbody>         
+                        @if($detail->count() > 0)                 
+                        @foreach($detail as $p)
                             <tr>                            
                             <td>{{ $p->id_detailkorban }}</td>
                             <td>{{ $p->id_pelaporan }}</td>
@@ -69,7 +70,12 @@
                                 </button>
                             </td>
                             </tr>
-                        @endforeach            
+                        @endforeach
+                        @else
+                        <tr>
+                          <td colspan="8" class="text-center"> Tidak ada data</td>
+                        </tr>    
+                        @endif            
                         </tbody>                      
                       </table>
                     </div>
@@ -159,7 +165,7 @@
 </div>
 
 <!-- MODAL EDIT DETAIL KORBAN -->
-@foreach ($detailkorban as $p)
+@foreach ($detail as $p)
 <div class="modal fade" id="edit{{ $p->id_detailkorban }}">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
@@ -237,7 +243,7 @@
 @endforeach
 
 <!-- MODAL HAPUS DETAIL KORBAN -->
-@foreach ($detailkorban as $p)
+@foreach ($detail as $p)
 <div class="modal fade" id="delete{{ $p->id_detailkorban }}">
   <div class="modal-dialog">
     <div class="modal-content">

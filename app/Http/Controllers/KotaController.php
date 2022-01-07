@@ -69,4 +69,36 @@ class KotaController extends Controller
         return redirect()->back();
 
     }
+
+    public function bin()
+    {
+        $kota = Kota::onlyTrashed()->get();
+        return view('bin.kotabin', ['kota' => $kota]);
+    }
+
+    public function restore($id_kota = null)
+    {
+        if($id_kota != null){
+            $nama_kota = Kota::onlyTrashed()->where('id_kota', $id_kota)->restore();
+        }else {
+            $nama_kota = Kota::onlyTrashed()->restore();
+        }
+
+        Toastr::info('Data kota berhasil dihapus','Restore');
+        return redirect()->back(); 
+
+    }
+
+    public function deleteperm($id_kota = null)
+    {
+        if($id_kota != null){
+            $nama_kota = Kota::onlyTrashed()->where('id_kota', $id_kota)->forceDelete();
+        }else {
+            $nama_kota = Kota::onlyTrashed()->forceDelete();
+        }
+
+        Toastr::error('Data kota berhasil dihapus permanen','Hapus Permanen');      
+        return redirect()->back();    
+    
+    }
 }

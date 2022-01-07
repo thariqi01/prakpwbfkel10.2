@@ -86,4 +86,36 @@ class PelaporanController extends Controller
         return redirect()->back();
     
     }
+
+    public function bin()
+    {
+        $pelaporan = Pelaporan::onlyTrashed()->get();
+        return view('bin.pelaporanbin', ['pelaporan' => $pelaporan]);
+    }
+
+    public function restore($id_pelaporan = null)
+    {
+        if($id_pelaporan != null){
+            $pelaporan = Pelaporan::onlyTrashed()->where('id_pelaporan', $id_pelaporan)->restore();
+        }else {
+            $pelaporan = Pelaporan::onlyTrashed()->restore();
+        }
+
+        Toastr::info('Data pelaporan berhasil dihapus','Restore');
+        return redirect()->back(); 
+
+    }
+
+    public function deleteperm($id_pelaporan = null)
+    {
+        if($id_pelaporan != null){
+            $pelaporan = Pelaporan::onlyTrashed()->where('id_pelaporan', $id_pelaporan)->forceDelete();
+        }else {
+            $pelaporan = Pelaporan::onlyTrashed()->forceDelete();
+        }
+
+        Toastr::error('Data pelaporan berhasil dihapus permanen','Hapus Permanen');      
+        return redirect()->back();    
+    
+    }
 }

@@ -52483,7 +52483,7 @@ a.text-muted:hover {
   }
 }
 
-@media (min-width: 768px){
+@media (max-width: 768px){
   .row i {
     position: absolute;
     float: right;
@@ -52492,7 +52492,6 @@ a.text-muted:hover {
     font-size: 16px;
   }
 }
-
 
 .form-password {
   display: block;

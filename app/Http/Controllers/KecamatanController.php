@@ -68,4 +68,36 @@ class KecamatanController extends Controller
         return redirect()->back();
 
     }
+
+    public function bin()
+    {
+        $kecamatan = Kecamatan::onlyTrashed()->get();
+        return view('bin.kecamatanbin', ['kecamatan' => $kecamatan]);
+    }
+
+    public function restore($id_kecamatan = null)
+    {
+        if($id_kecamatan != null){
+            $nama_kecamatan = Kecamatan::onlyTrashed()->where('id_kecamatan', $id_kecamatan)->restore();
+        }else {
+            $nama_kecamatan = Kecamatan::onlyTrashed()->restore();
+        }
+
+        Toastr::info('Data kecamatan berhasil dihapus','Restore');
+        return redirect()->back(); 
+
+    }
+
+    public function deleteperm($id_kecamatan = null)
+    {
+        if($id_kecamatan != null){
+            $nama_kecamatan = Kecamatan::onlyTrashed()->where('id_kecamatan', $id_kecamatan)->forceDelete();
+        }else {
+            $nama_kecamatan = Kecamatan::onlyTrashed()->forceDelete();
+        }
+
+        Toastr::error('Data kecamatan berhasil dihapus permanen','Hapus Permanen');      
+        return redirect()->back();    
+    
+    }
 }

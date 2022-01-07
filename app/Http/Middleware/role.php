@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 
 class role
@@ -20,6 +21,7 @@ class role
         if (Auth::user() &&  Auth::user()->role == 1) {
             return $next($request);
         }
-        return redirect('home')->with('error', "Anda tidak bisa mengakses halaman ini");
+        Alert::error('Error', 'Anda tidak bisa mengakses halaman dashboard');
+        return redirect()->back();
     }
 }

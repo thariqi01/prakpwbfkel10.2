@@ -47,7 +47,8 @@
                         <th> Nama Kategori Bencana</th>                 
                         <th> Opsi </th>
                         </thead>
-                        <tbody>                          
+                        <tbody>                   
+                          @if($kategori->count() > 0)       
                           @foreach($kategori as $p)
                             <tr>                            
                               <td>{{ $p->id_kategoribencana}}</td>
@@ -61,7 +62,12 @@
                                 </button>
                               </td>
                             </tr>
-                          @endforeach            
+                          @endforeach 
+                          @else
+                          <tr>
+                            <td colspan="5" class="text-center"> Tidak ada data</td>
+                          </tr>    
+                          @endif           
                         </tbody>                      
                     </table>
                     </div>

@@ -15,8 +15,8 @@ class DetailController extends Controller
     {
         $pelaporan = Pelaporan::all();
 
-        $detailkorban = DB::table('detailkorban')->where('deleted_at',null)->get();
-        return view('tables.detail', compact('pelaporan'), ['detailkorban' => $detailkorban]);
+        $detail = DB::table('detailkorban')->where('deleted_at',null)->get();
+        return view('tables.detail', compact('pelaporan'), ['detail' => $detail]);
     }
 
     public function store(Request $request)
@@ -81,5 +81,37 @@ class DetailController extends Controller
         Toastr::error('Data detail bencana berhasil dihapus','Hapus');
         return redirect()->back();
         
+    }
+
+    public function bin()
+    {
+        $detail = Detail::onlyTrashed()->get();
+        return view('bin.detailbin', ['detail' => $detail]);
+    }
+
+    public function restore($id_detailkorban = null)
+    {
+        if($id_detailkorban != null){
+            $nama = Detail::onlyTrashed()->where('id_detailkorban', $id_detailkorban)->restore();
+        }else {
+            $nama = Detail::onlyTrashed()->restore();
+        }
+
+        Toastr::info('Data detail korban berhasil dihapus','Restore');
+        return redirect()->back(); 
+
+    }
+
+    public function deleteperm($id_detailkorban = null)
+    {
+        if($id_detailkorban != null){
+            $nama = Detail::onlyTrashed()->where('id_detailkorban', $id_detailkorban)->forceDelete();
+        }else {
+            $nama = Detail::onlyTrashed()->forceDelete();
+        }
+
+        Toastr::error('Data detail korban berhasil dihapus permanen','Hapus Permanen');      
+        return redirect()->back();    
+    
     }
 }

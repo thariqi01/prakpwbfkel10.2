@@ -8,7 +8,7 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1>Data Master</h1>
+        <h1>Data Transaksi</h1>
       </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
@@ -22,7 +22,7 @@
 @endsection
 
 @section('content')
-<!-- TABEL KATEGORI -->
+<!-- TABEL KECAMATAN -->
 <section class="content">
     <div class="container-fluid">
         <div class="row">
@@ -34,15 +34,15 @@
                 @endif
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Data Kategori Terhapus</h3>
+                        <h3 class="card-title">Data Kecamatan</h3>
                         <div class="float-sm-right"> 
-                          <a href="{{ url('dashboard/kategori/restore') }}"  class="btn btn-info btn-sm">
+                          <a href="{{ url('dashboard/kecamatan/restore') }}" class="btn btn-info btn-sm">
                             <i class="fa fa-plus fa-fw"></i>Restore All
                           </a>
-                          <a href="{{ url('dashboard/kategori/delete') }}"  class="btn btn-danger btn-sm">
+                          <a href="{{ url('dashboard/kecamatan/delete') }}" class="btn btn-danger btn-sm">
                             <i class="fa fa-trash fa-fw"></i>Delete All
                           </a>                                                                  
-                          <a href="{{ url('dashboard/kategori') }}"  class="btn btn-secondary btn-sm">
+                          <a href="{{ url('dashboard/kecamatan') }}" class="btn btn-secondary btn-sm">
                             <i class="fa fa-chevron-left fa-fw"></i>Back
                           </a>                          
                         </div>
@@ -51,23 +51,25 @@
                     <div class="card-body">
                     <table id="example2" class="table table-bordered table-hover">
                         <thead>
-                        <th> ID </th>
-                        <th> Nama Kategori Bencana </th>    
+                        <th> ID Kecamatan</th>
+                        <th> ID Kota </th>   
+                        <th> Nama Kecamatan</th> 
                         <th> Tanggal Dihapus </th>
                         <th> Opsi </th>                 
                         </thead>
                         <tbody>      
-                          @if($kategori->count() > 0)                    
-                          @foreach($kategori as $p)
-                            <tr>                            
-                              <td>{{ $p->id_kategoribencana }}</td>
-                              <td>{{ $p->kategori_bencana }}</td>                      
+                          @if($kecamatan->count() > 0)                    
+                          @foreach($kecamatan as $p)
+                            <tr>   
+                              <td>{{ $p->id_kecamatan }}</td>                                 
+                              <td>{{ $p->id_kota }}</td>
+                              <td>{{ $p->nama_kecamatan }}</td>                                 
                               <td>{{ $p->deleted_at }}</td>
                               <td class="text-center">                                      
-                                <a href="{{ url('dashboard/kategori/restore/'.$p->id_kategoribencana) }}" class="btn btn-info btn-sm" title="Edit Data">                                      
+                                <a href="{{ url('dashboard/kecamatan/restore/'.$p->id_kecamatan) }}" class="btn btn-info btn-sm" title="Edit Data">                                      
                                   Restore
                                 </a>                                                                                          
-                                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteperm{{ $p->id_kategoribencana }} ">
+                                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteperm{{ $p->id_kecamatan }} ">
                                   Delete Permanent
                                 </button>  
                               </td>
@@ -81,24 +83,20 @@
                         </tbody>                      
                     </table>
                     </div>
-                    <!-- /.card-body -->
                 </div>
-                <!-- /.card -->          
             </div>
-            <!-- /.col -->
         </div>
-      <!-- /.row -->
     </div>
 </section>
-<!-- /.TABEL KATEGORI -->
+<!-- /.TABEL KECAMATAN -->
 
-<!-- MODAL HAPUS KATEGORI -->
-@foreach ($kategori as $p)
-<div class="modal fade" id="deleteperm{{ $p->id_kategoribencana }}">
+<!-- MODAL HAPUS KECAMATAN -->
+@foreach ($kecamatan as $p)
+<div class="modal fade" id="deleteperm{{ $p->id_kecamatan }}">
   <div class="modal-dialog">
     <div class="modal-content bg-danger">
       <div class="modal-header">
-        <h4 class="modal-title">{{ $p->kategori_bencana }}</h4>
+        <h4 class="modal-title">{{ $p->nama_kecamatan }}</h4>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -109,14 +107,11 @@
       </div>
       <div class="modal-footer justify-content-between">
         <button type="button" class="btn btn-outline-light" data-dismiss="modal">No</button>
-        <a href="{{ url('dashboard/kategori/deleteperm/'.$p->id_kategoribencana) }}" class="btn btn-outline-light">Yes</a>
+        <a href="{{ url('dashboard/kecamatan/deleteperm/'.$p->id_kecamatan) }}" class="btn btn-outline-light">Yes</a>
       </div>
     </div>
-    <!-- /.modal-content -->
   </div>
-  <!-- /.modal-dialog -->
 </div>
 @endforeach
-<!-- /.MODAL HAPUS KATEGORI -->
+<!-- /.MODAL HAPUS KECAMATAN -->
 @endsection
-

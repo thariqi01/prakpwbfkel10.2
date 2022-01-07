@@ -66,4 +66,36 @@ class BencanaController extends Controller
         return redirect()->back();
 
     }
+
+    public function bin()
+    {
+        $bencana = Bencana::onlyTrashed()->get();
+        return view('bin.bencanabin', ['bencana' => $bencana]);
+    }
+
+    public function restore($id_bencana = null)
+    {
+        if($id_bencana != null){
+            $bencana = Bencana::onlyTrashed()->where('id_bencana', $id_bencana)->restore();
+        }else {
+            $bencana = Bencana::onlyTrashed()->restore();
+        }
+
+        Toastr::info('Data bencana berhasil dihapus','Restore');
+        return redirect()->back(); 
+
+    }
+
+    public function deleteperm($id_bencana = null)
+    {
+        if($id_bencana != null){
+            $bencana = Bencana::onlyTrashed()->where('id_bencana', $id_bencana)->forceDelete();
+        }else {
+            $bencana = Bencana::onlyTrashed()->forceDelete();
+        }
+
+        Toastr::error('Data bencana berhasil dihapus permanen','Hapus Permanen');      
+        return redirect()->back();    
+    
+    }
 }

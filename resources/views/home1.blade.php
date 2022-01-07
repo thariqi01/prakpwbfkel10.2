@@ -9,7 +9,7 @@
     <meta name="author" content="Grayrids">
     <title>DisRep - Home</title>
     <!--====== Favicon Icon ======-->
-    <link rel="shortcut icon" href="img/2.png" type="image/png">
+    <link rel="shortcut icon" href="img/coba2.png" type="image/png">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/animate.css">
@@ -21,17 +21,12 @@
     <link rel="stylesheet" href="css/nivo-lightbox.css">
     <link rel="stylesheet" href="css/main.css">    
     <link rel="stylesheet" href="css/responsive.css">
-
   </head>
   
   <body>    
     <!-- Header Section Start -->
     <header id="home" class="hero-area">    
-      @if (session('error'))
-      <div class="alert alert-danger" role="alert">
-        {{ session('error') }}
-      </div>
-      @endif
+      
       <div class="overlay">
         <span></span>
         <span></span>
@@ -73,7 +68,7 @@
         <div class="row space-100">
           <div class="col-lg-6 col-md-12 col-xs-12">
             <div class="contents">
-              <h2 class="head-title">Web Buatan Kelompok 10<br>Untuk Kemudahan Anda</h2>
+              <h2 class="head-title">Web Buatan Tim 10<br>Untuk Kemudahan Anda</h2>
               <p>DisRep menawarkan kepada anda untuk melaporkan semua jenis bencana yang terjadi di sekitar anda.</p>
               <div class="header-button">
                 <a href="#contact" class="btn btn-border page-scroll">Hubungi Kami</a>
@@ -89,8 +84,7 @@
       </div>             
     </header>
     <!-- Header Section End --> 
-
-
+    
     <!-- Services Section Start -->
     <section id="services" class="section">
       <div class="container">
@@ -178,7 +172,7 @@
           <div class="col-lg-12">
             <div class="team-text section-header text-center">  
               <div>   
-                <h2 class="section-title">Anggota Kelompok 10</h2>
+                <h2 class="section-title">Anggota Tim 10</h2>
                 <div class="desc-text">
                   <p>Semua fitur pada DisRep dibuat oleh anggota kelompok kami</p>  
                   <p>dengan semangat dan kerja keras.</p>
@@ -269,41 +263,56 @@
         <div class="row">
           <!-- Start Col -->
           <div class="col-lg-6 col-md-12">
-          <form id="contactForm">
+          <form action="home/laporantemp/store" method="post">
+            @csrf
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
-                  <input type="text" class="form-control" id="name" name="name" placeholder="Nama Lengkap" required data-error="Silahkan masukkan nama anda">
+                  <input type="text" class="form-control @error('nama_pelapor') is-invalid @enderror" name="nama_pelapor" value="{{ old('nama_pelapor') }}" placeholder="Nama Lengkap" required>
+                  @error ('nama_pelapor')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                  @enderror
                   <div class="help-block with-errors"></div>
                 </div>                                 
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <input type="text" class="form-control" id="msg_subject" name="msg_subject" placeholder="Nama Bencana" required data-error="Silahkan masukkan nama bencana">
+                  <input type="text" class="form-control @error('nama_bencana') is-invalid @enderror" name="nama_bencana" value="{{ old('nama_bencana') }}" placeholder="Nama Bencana" required>
+                  @error ('nama_bencana')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                  @enderror
                   <div class="help-block with-errors"></div>
                 </div> 
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <input type="text" class="form-control" id="email" name="email" placeholder="Email" required data-error="Silahkan masukkan email anda">
+                  <input type="text" class="form-control @error('email_pelapor') is-invalid @enderror" name="email_pelapor" value="{{ old('email_pelapor') }}" placeholder="Email" required>
+                  @error ('email_pelapor')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                  @enderror
                   <div class="help-block with-errors"></div>
                 </div>                                 
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <input type="text" name="budget" id="budget" class="form-control" placeholder="Lokasi Bencana" required data-error="Please enter your Budget">
+                  <input type="text" class="form-control @error('lokasi_bencana') is-invalid @enderror" name="lokasi_bencana" value="{{ old('lokasi_bencana') }}" placeholder="Lokasi Bencana" required>
+                  @error ('lokasi_bencana')
+                    <div class="invalid-feedback">{{ $message }} </div>
+                  @enderror
                   <div class="help-block with-errors"></div>
                 </div> 
               </div>
               <div class="col-md-12">
                 <div class="form-group"> 
-                  <textarea class="form-control" id="message"  name="message" placeholder="Status Bencana" rows="4" data-error="Write your message" required></textarea>
+                  <textarea class="form-control @error('status_bencana') is-invalid @enderror" name="status_bencana" value="{{ old('status_bencana') }}" placeholder="Status Bencana" rows="4" required></textarea>
+                  @error ('status_bencana')
+                    <div class="invalid-feedback">{{ $message }}</div>
+                  @enderror
                   <div class="help-block with-errors"></div>
                 </div>
                 <div class="submit-button">
-                  <button class="btn btn-common" id="submit" type="submit">Laporkan!</button>
-                  <div id="msgSubmit" class="h3 hidden"></div> 
-                  <div class="clearfix"></div> 
+                  <button class="btn btn-common" type="submit">Laporkan!</button>
+                  @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
                 </div>
               </div>
             </div>            
@@ -335,12 +344,11 @@
     
 
     <!-- Footer Section Start -->  
-    <section class="footer">
-      
+    <section class="footer">      
       <div class="footer-social">
-        <a href=""><i class="fab fa-instagram "></i></a>
-        <a href=""><i class="fab fa-twitter"></i></a>
-        <a href=""><i class="fab fa-whatsapp"></i></a>
+        <a href="javascript:void(0);" onclick="showInfo()"><i class="fab fa-instagram "></i></a>
+        <a href="javascript:void(0);" onclick="showInfo()"><i class="fab fa-twitter"></i></a>
+        <a href="javascript:void(0);" onclick="showInfo()"><i class="fab fa-whatsapp"></i></a>
       </div>
       <ul class="footer-list">
         <li>
@@ -385,6 +393,16 @@
     <script src="js/nivo-lightbox.js"></script>     
     <script src="js/jquery.magnific-popup.min.js"></script>      
     <script src="js/main.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>   
+    <script>
+      function showInfo() {
+        swal({
+          icon: 'info',
+          title: 'Info',
+          text: 'Fitur ini akan segera hadir',
+        });
+      }
+    </script>
     
   </body>
 </html>

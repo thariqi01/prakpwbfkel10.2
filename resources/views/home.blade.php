@@ -9,7 +9,7 @@
     <meta name="author" content="Grayrids">
     <title>DisRep - Home</title>
     <!--====== Favicon Icon ======-->
-    <link rel="shortcut icon" href="img/2.png" type="image/png">
+    <link rel="shortcut icon" href="img/coba2.png" type="image/png">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/animate.css">
@@ -67,7 +67,7 @@
         <div class="row space-100">
           <div class="col-lg-6 col-md-12 col-xs-12">
             <div class="contents">
-              <h2 class="head-title">Web Buatan Kelompok 10<br>Untuk Kemudahan Anda</h2>
+              <h2 class="head-title">Web Buatan Tim 10<br>Untuk Kemudahan Anda</h2>
               <p>DisRep menawarkan kepada anda untuk melaporkan semua jenis bencana yang terjadi di sekitar anda.</p>
               <div class="header-button">
                 <a href="{{ url('register') }}" class="btn btn-border-filled">Get Started</a>
@@ -154,11 +154,15 @@
                 para pengguna. Dan kami sangat berharap bahwa masyarakat Indonesia bisa 
                 lebih waspada dan berhati-hati pada lingkungan sekitar.<br> 
               </p>
+              @if(Auth::user())                              
               <a class="btn btn-common page-scroll" href="#contact">laporkan!</a>
+              @endauth
+              @if(Auth::guest())                              
+              <a class="btn btn-common" onclick="showAlert()">laporkan!</a>              
+              @endauth
             </div>
           </div>
           <!-- End Col -->
-
         </div>
       </div>
     </section>
@@ -173,7 +177,7 @@
           <div class="col-lg-12">
             <div class="team-text section-header text-center">  
               <div>   
-                <h2 class="section-title">Anggota Kelompok 10</h2>
+                <h2 class="section-title">Anggota Tim 10</h2>
                 <div class="desc-text">
                   <p>Semua fitur pada DisRep dibuat oleh anggota kelompok kami</p>  
                   <p>dengan semangat dan kerja keras.</p>
@@ -264,45 +268,48 @@
         <div class="row">
           <!-- Start Col -->
           <div class="col-lg-6 col-md-12">
+          @if(Auth::guest())
           <form id="contactForm">
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
-                  <input type="text" class="form-control" id="name" name="name" placeholder="Nama Lengkap" required data-error="Silahkan masukkan nama anda">
+                  <input type="text" class="form-control" onclick="showAlert()" id="name" name="name" placeholder="Nama Lengkap" required data-error="Silahkan masukkan nama anda">
                   <div class="help-block with-errors"></div>
                 </div>                                 
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <input type="text" class="form-control" id="msg_subject" name="msg_subject" placeholder="Nama Bencana" required data-error="Silahkan masukkan nama bencana">
+                  <input type="text" class="form-control" onclick="showAlert()" id="msg_subject" name="msg_subject" placeholder="Nama Bencana" required data-error="Silahkan masukkan nama bencana">
                   <div class="help-block with-errors"></div>
                 </div> 
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <input type="text" class="form-control" id="email" name="email" placeholder="Email" required data-error="Silahkan masukkan email anda">
+                  <input type="text" class="form-control" onclick="showAlert()" id="email" name="email" placeholder="Email" required data-error="Silahkan masukkan email anda">
                   <div class="help-block with-errors"></div>
                 </div>                                 
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <input type="text" name="budget" id="budget" class="form-control" placeholder="Lokasi Bencana" required data-error="Please enter your Budget">
+                  <input type="text" name="budget" onclick="showAlert()" id="budget" class="form-control" placeholder="Lokasi Bencana" required data-error="Please enter your Budget">
                   <div class="help-block with-errors"></div>
                 </div> 
               </div>
               <div class="col-md-12">
                 <div class="form-group"> 
-                  <textarea class="form-control" id="message"  name="message" placeholder="Status Bencana" rows="4" data-error="Write your message" required></textarea>
+                  <textarea class="form-control" onclick="showAlert()" id="message"  name="message" placeholder="Status Bencana" rows="4" data-error="Write your message" required></textarea>
                   <div class="help-block with-errors"></div>
                 </div>
+                
                 <div class="submit-button">
-                  <button class="btn btn-common" id="submit" type="submit">Laporkan!</button>
+                  <button class="btn btn-common" onclick="showAlert()" id="submit" type="submit">Laporkan!</button>
                   <div id="msgSubmit" class="h3 hidden"></div> 
                   <div class="clearfix"></div> 
-                </div>
+                </div>                
               </div>
             </div>            
           </form>
+          @endif
           </div>
           <!-- End Col -->
           <!-- Start Col -->
@@ -333,9 +340,9 @@
     <section class="footer">
       
       <div class="footer-social">
-        <a href=""><i class="fab fa-instagram "></i></a>
-        <a href=""><i class="fab fa-twitter"></i></a>
-        <a href=""><i class="fab fa-whatsapp"></i></a>
+        <a href="javascript:void(0);" onclick="showInfo()"><i class="fab fa-instagram "></i></a>
+        <a href="javascript:void(0);" onclick="showInfo()"><i class="fab fa-twitter"></i></a>
+        <a href="javascript:void(0);" onclick="showInfo()"><i class="fab fa-whatsapp"></i></a>
       </div>
       <ul class="footer-list">
         <li>
@@ -378,8 +385,27 @@
     <script src="js/scrolling-nav.js"></script>    
     <script src="js/jquery.easing.min.js"></script>     
     <script src="js/nivo-lightbox.js"></script>     
-    <script src="js/jquery.magnific-popup.min.js"></script>      
+    <script src="js/jquery.magnific-popup.min.js"></script>   
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>   
     <script src="js/main.js"></script>
+    <script>
+      function showAlert() {
+        swal({
+          icon: 'error',
+          title: 'Error',
+          text: 'Harap login terlebih dahulu',
+        });
+      }
+    </script>
+    <script>
+      function showInfo() {
+        swal({
+          icon: 'info',
+          title: 'Info',
+          text: 'Fitur ini akan segera hadir',
+        });
+      }
+    </script>
     
   </body>
 </html>

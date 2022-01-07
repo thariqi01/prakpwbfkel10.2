@@ -12,6 +12,7 @@ use App\Http\Controllers\BencanaController;
 use App\Http\Controllers\PelaporanController;
 use App\Http\Controllers\DetailController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PelaporanTempController;
 
 
 use GuzzleHttp\Middleware;
@@ -34,6 +35,9 @@ Route::get('/', function () {
 Auth::routes();
 Route::get('logout','App\Http\Controllers\LoginController@logout')->middleware('auth')->name('logout');
 Route::get('/home','App\Http\Controllers\HomeController@home')->name('home1');
+
+//laporantemp
+Route::post('home/laporantemp/store',[PelaporanTempController::class,'store']);
 
 Route::group(['middleware' => ['role']], function () {
 
@@ -120,5 +124,6 @@ Route::group(['middleware' => ['role']], function () {
     Route::get('dashboard/detail/bin',[DetailController::class,'bin'])->middleware('auth');
     Route::get('dashboard/detail/restore/{id?}',[DetailController::class,'restore']);
     Route::get('dashboard/detail/deleteperm/{id?}',[DetailController::class,'deleteperm']);
+
 
 });

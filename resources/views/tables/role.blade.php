@@ -47,7 +47,8 @@
                         <th> Nama Role </th>
                         <th> Opsi </th>
                         </thead>
-                        <tbody>                          
+                        <tbody>          
+                          @if($role->count() > 0)                
                           @foreach($role as $p)
                             <tr>                            
                               <td>{{ $p->id_role }}</td>
@@ -61,7 +62,12 @@
                                 </button>
                               </td>
                             </tr>
-                          @endforeach            
+                          @endforeach 
+                          @else
+                          <tr>
+                            <td colspan="5" class="text-center"> Tidak ada data</td>
+                          </tr>    
+                          @endif           
                         </tbody>                      
                     </table>
                     </div>
